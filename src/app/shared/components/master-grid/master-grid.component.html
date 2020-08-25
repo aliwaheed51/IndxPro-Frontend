@@ -1,0 +1,134 @@
+<div class="master-grid">
+  <kendo-grid
+    [globalFilter]="globalFilter"
+    [gridDataBinding]="url"
+    [pageSize]="20"
+    [pageable]="!config.notPageable"
+    [sortable]="true"
+    [filterable]="false"
+    [groupable]="config.groupable"
+  >
+    <ng-template kendoGridToolbarTemplate>
+      <div class="grid-header" *ngIf="!config.hideToolbar">
+        <div class="row overflow-x align-items-center">
+          <div class="col-md-3">
+            <div class="form-group mb-0">
+              <input type="text" class="k-textbox w-100" placeholder="Search" [(ngModel)]="globalFilter" />
+              <span class="fa fa-search form-control-feedback"></span>
+            </div>
+          </div>
+          <div class="col-md-auto ml-auto mobile-mt-10 white-space-nr">
+            <button *addRights="config.screenCode" type="button" class="btn-white btn-border mr-1" (click)="addClick.emit()">
+              <span class="btn-circle-icon btn-cicle-green">
+                <img src="./assets/images/add.svg" />
+              </span>
+              Add New
+            </button>
+            <audit-history-common-button *viewRights="config.screenCode" [tableName]="config.table" [pageName]="config.title"> </audit-history-common-button>
+            <kendo-dropdownbutton *exportRights="config.screenCode" [data]="buttonData" [icon]="'download'" class="btn-border mr-1">
+              <span class="btn-circle-icon btn-cicle-yellow">
+                <i class="las la-download"></i>
+              </span>
+              Export
+              <ng-template kendoDropDownButtonItemTemplate let-dataItem>
+                <span *ngIf="dataItem.type === 'pdf'" kendoGridPDFCommand icon="file-pdf">{{ dataItem.text }}</span>
+                <span *ngIf="dataItem.type === 'excel'" kendoGridExcelCommand icon="file-excel">{{ dataItem.text }}</span>
+              </ng-template>
+            </kendo-dropdownbutton>
+            <label class="ml-1 cursor-pointer">
+              <input type="checkbox" kendoCheckBox [(ngModel)]="isDeleted" (ngModelChange)="onDeleteChange()" /> Show Deactivated Records
+            </label>
+            <grid-settings-button [screenCode]="config.screenCode"></grid-settings-button>
+          </div>
+        </div>
+      </div>
+    </ng-template>
+    <ng-template kendoPagerTemplate let-totalPages="totalPages" let-currentPage="currentPage">
+      <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+      <kendo-pager-numeric-buttons [buttonCount]="5"></kendo-pager-numeric-buttons>
+      <kendo-pager-next-buttons></kendo-pager-next-buttons>
+      <kendo-pager-info></kendo-pager-info>
+      <kendo-pager-page-sizes [pageSizes]="[5, 10, 20, 50]"></kendo-pager-page-sizes>
+    </ng-template>
+    <kendo-grid-pdf fileName="{{ config.title + '.pdf' }}" paperSize="A4" [repeatHeaders]="true" [allPages]="true">
+      <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+      <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+        <div class="page-template">
+          <div class="header">
+            <div style="float: right;">{{ companyName }}</div>
+            {{ config.title }}
+          </div>
+          <div class="footer">
+            <div style="float: right;">
+              {{ now | date: 'yyyy-MM-dd hh:mm:ss' }}
+            </div>
+            <div style="float: left;">Page {{ pageNum }} of {{ totalPages }}</div>
+          </div>
+        </div>
+      </ng-template>
+      <kendo-grid-column *ngFor="let col of config.columns" [field]="col.field" [title]="col.title"> </kendo-grid-column>
+    </kendo-grid-pdf>
+
+    <kendo-grid-excel fileName="{{ config.title + '.xlsx' }}" [fetchData]="allData">
+      <kendo-excelexport-column title="Company: {{ companyName }}">
+        <kendo-excelexport-column title="Export Date: {{ now | date: 'yyyy-MM-dd hh:mm:ss' }}">
+          <kendo-excelexport-column title="{{ 'Page: ' + config.title }}">
+            <kendo-excelexport-column *ngFor="let col of config.columns" [field]="col.field" [title]="col.title"> </kendo-excelexport-column>
+          </kendo-excelexport-column>
+        </kendo-excelexport-column>
+      </kendo-excelexport-column>
+    </kendo-grid-excel>
+    <kendo-grid-column title="Action" [width]="actionWidth" [sortable]="false">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <grid-buttons
+          [moduleId]="moduleId"
+          [dataItem]="dataItem"
+          [ctrlName]="config.table"
+          [hideEdit]="config.hideEdit"
+          [customDelete]="config.customDelete"
+          [that]="this"
+          (deleteClick)="deleteClick.emit(dataItem.id)"
+          (editClick)="editClick.emit(dataItem.id)"
+          (deleted)="deleted.emit()"
+          [screenCode]="config.screenCode"
+        >
+        </grid-buttons>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column *ngFor="let col of config.columns" [field]="col.field" [title]="col.title" [width]="col.width">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <div *ngIf="col.button">
+          <button (click)="col.button(dataItem)">{{ dataItem[col.field] }}</button>
+        </div>
+        <div *ngIf="!col.button">
+          {{ getValue(dataItem, col) }}
+        </div>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="createdByUser" title="Created By" [headerStyle]="{'width': '120px'}"
+    [style]="{'width': '120px'}"> </kendo-grid-column>
+    <kendo-grid-column field="createdDate" title="Created Date" [headerStyle]="{'width': '120px'}"
+    [style]="{'width': '120px'}">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{ dataItem.createdDate | dateTimeFormat }}
+      </ng-template> -->
+    </kendo-grid-column>
+    <kendo-grid-column field="modifiedByUser" title="Modified By" [headerStyle]="{'width': '120px'}"
+    [style]="{'width': '120px'}"> </kendo-grid-column>
+    <kendo-grid-column field="modifiedDate" title="Modified Date" [headerStyle]="{'width': '120px'}"
+    [style]="{'width': '120px'}">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{ dataItem.modifiedDate | dateTimeFormat }}
+      </ng-template> -->
+    </kendo-grid-column>
+    <kendo-grid-column field="deletedByUser" title="Deleted By" *ngIf="isDeleted" [headerStyle]="{'width': '120px'}"
+    [style]="{'width': '120px'}"></kendo-grid-column>
+    <kendo-grid-column field="deletedDate" title="Deleted Date" *ngIf="isDeleted" [headerStyle]="{'width': '120px'}"
+    [style]="{'width': '120px'}">
+      <!-- <ng-template kendoGridCellTemplate let-dataItem>
+        {{ dataItem.deletedDate | dateTimeFormat }}
+      </ng-template> -->
+    </kendo-grid-column>
+    <!-- <kendo-grid-column field="companyName" title="companyName"> </kendo-grid-column> -->
+  </kendo-grid>
+</div>

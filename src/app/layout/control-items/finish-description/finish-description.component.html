@@ -1,0 +1,43 @@
+<div>
+    <master-header title="Finish Description" tableName="finishDescription" (saveClick)="onSave()" [id]="id"
+        [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Finish Type</label>
+                        <kendo-dropdownlist formControlName="finishTypeID" [defaultItem]="default" [data]="finishTypes"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required (valueChange)="handleFinishTypeChange($event)">
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('finishTypeID').hasError('required') && form.get('finishTypeID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Finish Catergories</label>
+                        <kendo-dropdownlist formControlName="finishCatergoriesID" [defaultItem]="default" [data]="finishCatergories"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('finishCatergoriesID').hasError('required') && form.get('finishCatergoriesID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Finish Description</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="finishDescription"
+                            maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('finishDescription').hasError('required') && form.get('finishDescription').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

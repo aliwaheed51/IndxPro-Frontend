@@ -1,0 +1,15 @@
+<kendo-tabstrip (tabSelect)="onTabSelect($event)" keepTabContent="true" style="margin-top: 105px;">
+  <kendo-tabstrip-tab [selected]="item.selected" *ngFor="let item of tabItems">
+    <ng-template kendoTabTitle>
+      <div class="close-btn">
+        {{ item.title }}
+        <span (click)="removeTabItem(item)" class="tab-close-btn" *ngIf="tabItems.length > 1">
+          <i class="las la-times"></i>
+        </span>
+      </div>
+    </ng-template>
+    <ng-template kendoTabContent>
+      <app-dynamic-loader [item]="item"></app-dynamic-loader>
+    </ng-template>
+  </kendo-tabstrip-tab>
+</kendo-tabstrip>

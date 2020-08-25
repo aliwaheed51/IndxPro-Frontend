@@ -1,0 +1,26 @@
+<div (clickOutside)="visability = false; hideMenu.emit()" [exclude]="'.excludeMainMenu'">
+    <!-- <div class="menu-title">MENU</div> -->
+    <div id="navbar">
+        <span *ngFor="let module of modules" id="navbar2" (mouseover)="loadLazyModue(module)">
+      <a *ngIf="module.active">
+        <span>{{ module.name }}</span>
+        <i class="k-icon {{ module.icon }}"></i>
+        </a>
+        </span>
+
+    </div>
+    <div class="second-level-sidebar" *ngIf="visability">
+        <!-- <span class="close-btn" (click)="visability = false">
+      <i class="las la-times-circle"></i>
+    </span>
+    <div class="parent-menu" *ngIf="selectedModule">
+      <i class="fa {{ selectedModule.icon }}"></i>
+      {{ selectedModule.name }}
+    </div> -->
+        <ul class="submenu-items">
+            <li *ngFor="let item of menuItems" class="second-menu-list" (click)="loadItem(item)">
+                <span>{{ item.title }}</span>
+            </li>
+        </ul>
+    </div>
+</div>

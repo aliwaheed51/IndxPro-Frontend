@@ -1,0 +1,101 @@
+<div>
+    <master-header title="Employee" tableName="Employee" (saveClick)="onSave()" [id]="id" [formGroup]="form"
+        (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>First Name</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="firstName" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Last Name</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="lastName" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('lastName').hasError('required') && form.get('lastName').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Employee Status</label>
+                        <kendo-combobox [data]="employeeStatusData" formControlName="employeeStatus"
+                            [valuePrimitive]="true" textField="value" valueField="id" class="w-100"
+                            [popupSettings]="{ width: 'auto' }">
+                        </kendo-combobox>
+                    </div>
+
+                    
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Employment Type</label>
+                        <kendo-combobox [data]="employmentTypeData" formControlName="employmentType"
+                            [valuePrimitive]="true" textField="value" valueField="id" class="w-100"
+                            [popupSettings]="{ width: 'auto' }">
+                        </kendo-combobox>
+                    </div>
+                    <div class="form-group col-md-4" *ngIf ="isSuperAdmin">
+                        <label>Company</label>
+                        <kendo-combobox [data]="companies" formControlName="companyId" [valuePrimitive]="true"
+                         (valueChange)="companyChange($event)"   textField="value" valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }">
+                        </kendo-combobox>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Department</label>
+                        <kendo-combobox [data]="departmentList" formControlName="departmentId" [valuePrimitive]="true"
+                            textField="value" valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }">
+                        </kendo-combobox>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Employee Full address</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="address" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Employee Bank Account Details</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="accountDetails" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Cost per hours</label>
+                        <input kendoTextBox type="number" class="w-100" formControlName="costPerHour" />
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Cost per houts + 40% profit</label>
+                        <input kendoTextBox type="number" class="w-100" formControlName="costPerHourProfit" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Upload CV</label>
+                        <input id="UploadfileInput" type="file" (change)="UploadfileChange($event.target.files)"
+                            onclick="this.value = null" />
+
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label></label>
+                        <div *ngIf="data != null && data.id > 0 && downloadLink != ''">
+                            <a class="w-100" href="{{downloadLink}}" download target="_blank">Download old CV</a>
+                        </div>
+                    </div>
+                </div>
+                 
+            </div>
+            <div class="col-md-auto">
+                <div class="user-pic-control mb-3">
+                    <div class="snapshot">
+                        <img class="avtar" [src]="profilePicPath" class="image vol-picture">
+                    </div>
+                </div>
+                <input id="fileInput" type="file" (change)="fileChange($event.target.files)" onclick="this.value = null"
+                    accept="image/*" />
+            </div>
+        </div>
+    </form>
+</div>

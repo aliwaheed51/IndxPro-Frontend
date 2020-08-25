@@ -1,0 +1,83 @@
+<div *ngIf="!showDetails">
+    <div class="stepper-content" *ngIf="!showDetails">
+        <button type="button" class="btn-theme mr-1 mb-3" (click)="addClick()">
+            <span class="btn-circle-icon btn-circle-theme">
+                <i class="fa fa-plus"></i>
+            </span>
+            Add New
+        </button>
+        <kendo-grid [groupable]="true" [reorderable]="true" [resizable]="true" [columnMenu]="{ filter: true }"
+            [kendoGridBinding]="gridView" [pageSize]="20" [sortable]="true" [pageable]="true">
+            <ng-template kendoGridToolbarTemplate>
+                <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)" />
+                <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to
+                    Excel</button>
+                <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+            </ng-template>
+            <kendo-grid-command-column title="Action" width="80">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span class="badge-grid-action badge-blue mr-2" (click)="editClick(dataItem)">
+                        <i class="las la-edit text-blue grd-edit-del"></i>
+                    </span>
+                    <span class="badge-grid-action badge-red" (click)="onDelete(dataItem.id)">
+                        <i class="las la-trash text-red grd-edit-del"></i>
+                    </span>
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column width="200" title="Full Name">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <img height="70" width="70" class="customPhoto mr-3" src="{{dataItem.logo}}" />
+                    {{ dataItem.firstName }} {{ dataItem.lastName }} 
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column [columnMenu]="false" *ngIf="isSuperAdmin" field="companyName" title="Company Name">
+            </kendo-grid-column>
+            <kendo-grid-column [columnMenu]="false" field="employeeStatusText" title="Employee Status Text">
+            </kendo-grid-column>
+            <kendo-grid-column [columnMenu]="false" field="employmentTypeText" title="Employment Type Text">
+            </kendo-grid-column>
+            <kendo-grid-column [columnMenu]="false" field="address" title="Address">
+            </kendo-grid-column>
+            <kendo-grid-column [columnMenu]="false" field="costPerHour" title="Cost Per Hour">
+            </kendo-grid-column>
+            <kendo-grid-column [columnMenu]="false" field="costPerHourProfit" title="Cost Per Hour  +40% profit">
+            </kendo-grid-column>
+            <kendo-grid-pdf fileName="Employee.pdf" paperSize="A4" [scale]="0.8" [repeatHeaders]="true">
+                <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+                <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+                    <div class="page-template">
+                        <div class="header">
+                            <div style="float: right"> Employee List </div>
+                            Index Procurement
+                        </div>
+                        <div class="footer">
+                            Page {{ pageNum }} of {{ totalPages }}
+                        </div>
+                    </div>
+                </ng-template>
+                <kendo-grid-column [columnMenu]="false" title="Full Name">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.users.firstName }} {{ dataItem.users.lastName }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" width="200"  *ngIf="isSuperAdmin" field="companyName" title="Company Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="employeeStatusText" title="Employee Status Text">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="employmentTypeText" title="Employment Type Text">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="address" title="Address">
+
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="costPerHour" title="Cost Per Hour">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="costPerHourProfit" title="Cost Per Hour  +40% profit">
+                </kendo-grid-column>
+            </kendo-grid-pdf>
+            <kendo-grid-excel fileName="Employee.xlsx"></kendo-grid-excel>
+        </kendo-grid>
+    </div>
+</div>
+
+<app-employee *ngIf="showDetails" (backClick)="onBack()" [data]='data'>
+</app-employee>

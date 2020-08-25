@@ -1,0 +1,295 @@
+.btn-square-white {
+  border-radius: 5px;
+  padding: 0.4rem 1.5rem 0.4rem 1.5rem;
+  color: $text-primary;
+  border: 0;
+  background-color: $white;
+  font-size: 16px;
+  img {
+    margin-right: 5px;
+  }
+}
+.btn-theme {
+  background-color: $white;
+  border-radius: 50px;
+  padding: 0.35rem 1rem 0.3rem 0.5rem;
+  color: $theme;
+  border: 1px solid $theme;
+  line-height: 20px;
+}
+.btn-circle-theme {
+  background-color: $theme;
+}
+.btn-theme:active:not(:disabled):not(.disabled),.btn-theme:hover:not(:disabled):not(.disabled){
+  background-color: $theme;
+  color: $white;
+}
+.btn-white {
+  background-color: $white;
+  border-radius: 50px;
+  padding: 0.35rem 1rem 0.3rem 0.5rem;
+  color: $text-primary;
+  border: 0;
+  line-height: 18px;
+}
+.btn-green {
+  background-color: lighten($color: $green, $amount: 40%);
+  color: $green;
+  border-radius: 50px;
+  padding: 0.35rem 1rem 0.3rem 0.5rem;
+  border: 0 !important;
+  line-height: 18px;
+}
+.btn-green-filled {
+  background-color: $green;
+  color: $white;
+  border-radius: 50px;
+  padding: 7px 20px;
+  border: 0 !important;
+  line-height: 18px;
+}
+.btn-primary-filled {
+  background-color: $primary;
+  color: $white;
+  border-radius: 50px;
+  padding: 7px 20px;
+  border: 0 !important;
+  line-height: 18px;
+}
+.btn-primary,.btn-primary:disabled,.btn-primary.focus, .btn-primary:focus {
+  background-color: $primary;
+  border-color: $primary;
+  box-shadow: none;
+}
+.btn-primary:not(:disabled):not(.disabled).active:focus, .btn-primary:not(:disabled):not(.disabled):active:focus{
+  box-shadow: none;
+}
+.btn-primary:not(:disabled):not(.disabled).active, .btn-primary:not(:disabled):not(.disabled):active{
+  background-color: $primary;
+  border-color: $primary;
+  box-shadow: none;
+}
+.btn-primary:active:not(:disabled):not(.disabled),.btn-primary:hover:not(:disabled):not(.disabled){
+  background-color:#63a0ab;
+  border-color:#63a0ab;
+  box-shadow: none;
+}
+.btn-red {
+  background-color: lighten($color: $red, $amount: 40%);
+  color: $red;
+  border-radius: 50px;
+  padding: 0.35rem 1rem 0.3rem 0.5rem;
+  border: 0 !important;
+  line-height: 18px;
+}
+.btn-circle-icon {
+  border-radius: 50%;
+  height: 22px;
+  width: 22px;
+  margin-right: 5px;
+  float: left;
+  margin-top: -1px;
+  img {
+    max-width: 12px;
+    height: 100%;
+  }
+  i {
+    color: #fff;
+    line-height: 22px;
+  }
+}
+.btn-circle-font-icon {
+  border-radius: 50%;
+  height: 30px;
+  width: 30px;
+  margin-right: 5px;
+  float: left;
+  margin-top: -1px;
+  border: 0;
+  img {
+    max-height: 10px;
+    height: 100%;
+  }
+  i {
+    color: #fff;
+    line-height: 22px;
+  }
+}
+.btn-square-gray {
+  border-radius: 5px;
+  padding: 0.4rem 1.5rem 0.4rem 1.5rem;
+  color: $text-primary;
+  border: 0;
+  background-color: $modal-bg;
+  font-size: 16px;
+  img {
+    margin-right: 5px;
+  }
+}
+.btn-square-white {
+  border-radius: 5px;
+  padding: 0.4rem 1.1rem 0.4rem 1.1rem;
+  color: $primary;
+  border: 0;
+  background-color: #fff;
+  font-size: 16px;
+  img {
+    margin-right: 5px;
+  }
+  i {
+    font-size: 18px;
+  }
+}
+.btn-gray {
+  background-color: $modal-bg;
+  border-radius: 50px;
+  padding: 0.35rem 1rem 0.3rem 0.5rem;
+  color: $text-primary;
+  border: 0;
+}
+button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.btn-border {
+  border: 1px solid $border-lightgray;
+}
+.btn-cicle-green {
+  background-color: $teal;
+}
+.btn-cicle-red {
+  background-color: $red;
+}
+.btn-cicle-blue {
+  background-color: $primary;
+}
+.btn-cicle-yellow {
+  background-color: $yellow;
+}
+.btn-cicle-purple {
+  background-color: $purple;
+}
+button:focus {
+  outline: none;
+}
+.btn-priamry {
+  background-color: $primary;
+  color: $white;
+  &:hover {
+    color: $red;
+  }
+}
+.tab-close-btn {
+  cursor: pointer;
+  float: right;
+  margin-top: 2px;
+  margin-left: 20px;
+  i {
+    font-size: 16px;
+  }
+}
+
+.badge {
+  border-radius: 10px 11px 10px 10px;
+  padding: 8px 10px;
+  font-size: 14px;
+}
+.badge-grid-action {
+  border-radius: 5px;
+  padding: 5px 8px;
+  font-size: 14px;
+  cursor: pointer;
+}
+.badge-red {
+  background-color: lighten($color: $red, $amount: 40%);
+  color: $red;
+}
+.badge-filled {
+  border-radius: 7px 8px 7px 7px;
+  padding: 3px 7px;
+  font-size: 14px;
+  font-weight: 500;
+}
+.badge-green {
+  background-color: lighten($color: $green, $amount: 40%);
+  color: $green;
+}
+.badge-green-full {
+  background-color: lighten($color: $green, $amount: 10%);
+  color: $white;
+}
+.badge-filled-green {
+  background-color: $green;
+}
+.badge-filled-red {
+  background-color: $red;
+}
+.badge-filled-yellow {
+  background-color: $yellow;
+}
+.badge-blue {
+  background-color: lighten($color: $primary, $amount: 55%);
+  color: $primary;
+}
+.badge-purple {
+  background-color: lighten($color: $purple, $amount: 30%);
+  color: $purple;
+}
+.badge-gray {
+  background-color: lighten($color: $text-secondary, $amount: 50%);
+  color: $text-secondary;
+}
+.badge-orange {
+  background-color: lighten($color: $yellow, $amount: 40%);
+  color: $yellow;
+}
+.badge-orange-full {
+  background-color: lighten($color: $yellow, $amount: 10%);
+  color: $white;
+}
+.badge-font-icon {
+  padding: 5px;
+  border-radius: 7px;
+  i {
+    font-size: 22px;
+  }
+}
+.badge-blue-border {
+  border: 1px solid darken($color: $primary, $amount: 5%);
+}
+.badge-red-border {
+  border: 1px solid darken($color: $red, $amount: 5%);
+}
+.grd-edit-del {
+  font-size: 15px;
+}
+.btn-no-style {
+  background-color: transparent;
+  border: 0;
+}
+.btn-no-style:focus {
+  background-color: transparent;
+  border: 0;
+  outline: none;
+}
+.nsm-content {
+  background-color: #fff !important;
+}
+.nsm-content:focus,
+.nsm-body:focus,
+.nsm-dialog:focus {
+  outline: none !important;
+}
+.webcam-wrapper {
+  width: 100%;
+  video {
+    width: 100% !important;
+  }
+}
+.search-icon {
+  position: absolute;
+  right: 14px;
+  top: 7px;
+  transform: rotate(280deg);
+  cursor: pointer;
+}

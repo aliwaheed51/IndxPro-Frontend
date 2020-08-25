@@ -1,0 +1,67 @@
+<div>
+    <master-header title="Project Area" tableName="ProjectArea" (saveClick)="onSave()" [id]="id" [formGroup]="form"
+        (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Company Name</label>
+                <kendo-combobox [data]="companies" formControlName="companyId" [valuePrimitive]="true" textField="value"
+                    valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }"
+                    (valueChange)="companychange($event)">
+                </kendo-combobox>
+                <div class="required-text"
+                    *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Project Name</label>
+                <kendo-combobox [data]="projectList" formControlName="projectId" [valuePrimitive]="true"
+                    textField="value" valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }">
+                </kendo-combobox>
+
+                <div class="required-text"
+                    *ngIf="form.get('projectId').hasError('required') && form.get('projectId').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="label-primary">Area Name</label>
+                <input type="text" class="k-textbox w-100" formControlName="areaName" maxlength="200" noSpace />
+            </div>
+           
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label class="label-primary">Total Area Budget</label>
+                <input type="number" class="k-textbox w-100" formControlName="areaBudget" maxlength="200" noSpace />
+            </div>
+            <div class="form-group col-md-3">
+                <label class="label-primary">Width</label>
+                <input type="number" class="k-textbox w-100" formControlName="areaWidth" maxlength="200" noSpace />
+            </div>
+            <div class="form-group col-md-3">
+                <label class="label-primary">Length</label>
+                <input type="number" class="k-textbox w-100" formControlName="areaLength" maxlength="200" noSpace />
+            </div>
+            <div class="form-group col-md-3">
+                <label class="label-primary">Height</label>
+                <input type="number" class="k-textbox w-100" formControlName="areaHeight" maxlength="200" noSpace />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-3">
+                <label class="label-primary">Floor</label>
+                <input type="number" class="k-textbox w-100" formControlName="areaFloor" maxlength="200" noSpace />
+            </div>
+            <div class="form-group col-md-3">
+                <label class="label-primary">Diameter</label>
+                <input type="number" class="k-textbox w-100" formControlName="areaDiameter" maxlength="200" noSpace />
+            </div>
+            <div class="form-group col-md-3">
+                <label class="label-primary">Quantity</label>
+                <input type="number" class="k-textbox w-100" formControlName="areaQuantity" maxlength="200" noSpace />
+            </div>
+        </div>
+    </form>
+</div>

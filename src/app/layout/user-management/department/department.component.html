@@ -1,0 +1,17 @@
+<div>
+  <master-header title="Role" tableName="SecurityRole" (saveClick)="onSave()" [id]="id" [formGroup]="form"
+    (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Role Name</label>
+        <input type="text" class="k-textbox w-100" formControlName="roleName" maxlength="200" noSpace />
+        <div class="required-text"
+          *ngIf="form.get('roleName').hasError('required') && form.get('roleName').touched">
+          This field is required!
+        </div>
+      </div>
+
+    </div>
+  </form>
+</div>

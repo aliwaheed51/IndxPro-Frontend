@@ -1,0 +1,122 @@
+<div *ngIf="!showDetails">
+    <div class="stepper-content" *ngIf="!showDetails">
+        <button type="button" class="btn-theme mr-1 mb-3" (click)="addClick()">
+            <span class="btn-circle-icon btn-circle-theme">
+                <i class="fa fa-plus"></i>
+            </span>
+            Add New
+        </button>
+        <kendo-grid [groupable]="true" [reorderable]="true" [resizable]="true" [columnMenu]="{ filter: true }"
+            [kendoGridBinding]="gridView" [pageSize]="20" [sortable]="true" [pageable]="true">
+            <ng-template kendoGridToolbarTemplate>
+                <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)" />
+                <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to
+                    Excel</button>
+                <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+            </ng-template>
+            <kendo-grid-command-column title="Action" width="100">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span class="badge-grid-action badge-blue mr-2" (click)="editClick(dataItem.id)">
+                        <i class="las la-edit text-blue grd-edit-del"></i>
+                    </span>
+                    <span class="badge-grid-action badge-red" (click)="onDelete(dataItem.id)">
+                        <i class="las la-trash text-red grd-edit-del"></i>
+                    </span>
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column field="companyName" width="200" title="Company Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="projectRefNumber" width="200" title="Project Ref No">
+            </kendo-grid-column>
+            <kendo-grid-column field="projectName" width="200" title="Project Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="isActive" width="100" title="Status">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <kendo-switch class="k-switch w-100" [readonly]="true" [onLabel]="'Yes'"
+                        [(ngModel)]="dataItem.isActive" [offLabel]="'No'"></kendo-switch>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="totalProjectBudget" width="200" title="Total Project Budget">
+            </kendo-grid-column>
+            <kendo-grid-column field="startingDate" width="200" title="Starting Date">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.startingDate | date: 'MM/dd/yyyy'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="deadline" width="200" title="Deadline">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.deadline | date: 'MM/dd/yyyy'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="completionDate" width="200" title="Completion Date">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.completionDate | date: 'MM/dd/yyyy'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="departmentName" width="200" title="Department Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="clientName" width="200" title="Client Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="contractID" width="200" title="Contract ID">
+            </kendo-grid-column>
+
+            <kendo-grid-pdf fileName="Project.pdf" paperSize="A4" [scale]="0.8" [repeatHeaders]="true">
+                <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+                <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+                    <div class="page-template">
+                        <div class="header">
+                            <div style="float: right"> Project </div>
+                            Index Procurement
+                        </div>
+                        <div class="footer">
+                            Page {{ pageNum }} of {{ totalPages }}
+                        </div>
+                    </div>
+                </ng-template>
+
+
+                <kendo-grid-column [columnMenu]="false" field="companyName" width="50" title="Company Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="projectRefNumber" width="50" title="Project Ref No">
+                </kendo-grid-column>
+                <kendo-grid-column field="projectName" width="50" title="Project Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="isActive" width="50" title="Status">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <kendo-switch class="k-switch w-100" [readonly]="true" [onLabel]="'Yes'"
+                            [(ngModel)]="dataItem.isActive" [offLabel]="'No'"></kendo-switch>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="totalProjectBudget" width="50"
+                    title="Total Project Budget">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="startingDate" width="50" title="Starting Date">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.startingDate | date: 'MM/dd/yyyy'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="deadline" width="50" title="Deadline">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.deadline | date: 'MM/dd/yyyy'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="completionDate" width="50" title="Completion Date">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.completionDate | date: 'MM/dd/yyyy'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="departmentName" width="50" title="Department Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="clientName" width="50" title="Client">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="contractID" width="50" title="Contract ID">
+                </kendo-grid-column>
+
+            </kendo-grid-pdf>
+            <kendo-grid-excel fileName="Project.xlsx"></kendo-grid-excel>
+        </kendo-grid>
+    </div>
+</div>
+
+<app-project *ngIf="showDetails" (backClick)="onBack()" [data]='data'>
+</app-project>

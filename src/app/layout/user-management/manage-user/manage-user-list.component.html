@@ -1,0 +1,162 @@
+<div id="grid" class="page-layout carded fullwidth inner-scroll">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="master-grid">
+            <kendo-grid [globalFilter]="globalFilter" [data]="userData" gridDataBinding="user" [pageSize]="20"
+                [pageable]="true" [sortable]="true" [filterable]="false" [groupable]="false">
+                <ng-template kendoGridToolbarTemplate>
+                    <div class="row custom-grid-list align-items-center">
+                        <div class="col-sm-3 search-area-new">
+                            <div class="search-wrapper-new">
+                                <div class="search">
+                                    <input type="text" class="k-textbox w-100" placeholder="Search"
+                                        [(ngModel)]="globalFilter" />
+                                    <span class="fa fa-search form-control-feedback"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-auto ml-auto mobile-mt-10 white-space-nr">
+                            <button type="button" *addRights="config.screenCode" class="btn-white btn-border mr-1" (click)="addClick.emit()">
+                                <span class="btn-circle-icon btn-cicle-green">
+                                    <img src="./assets/images/add.svg" />
+                                </span>
+                                Add New
+                            </button>
+                            <audit-history-common-button *viewRights="config.screenCode" [tableName]="config.table" [pageName]="config.title">
+                            </audit-history-common-button>
+                            <kendo-dropdownbutton *exportRights="config.screenCode" [data]="buttonData" [icon]="'download'" class="btn-border mr-1">
+                                <span class="btn-circle-icon btn-cicle-yellow">
+                                    <i class="las la-download"></i>
+                                </span>
+                                Export
+                                <ng-template kendoDropDownButtonItemTemplate let-dataItem>
+                                    <span *ngIf="dataItem.type==='pdf'" kendoGridPDFCommand
+                                        icon="file-pdf">{{ dataItem.text }}</span>
+                                    <span *ngIf="dataItem.type==='excel'" kendoGridExcelCommand
+                                        icon="file-excel">{{ dataItem.text }}</span>
+                                </ng-template>
+                            </kendo-dropdownbutton>
+                            <label class="ml-1 cursor-pointer">
+                                <input type="checkbox" id="isDeleted" [(ngModel)]="isDeleted"
+                                    (ngModelChange)="onDeleteChange()" class="k-checkbox"> Show Deactivated Records
+                            </label>
+                            <grid-settings-button screenCode='config.screenCode'></grid-settings-button>
+                        </div>
+                    </div>
+                </ng-template>
+                <ng-template kendoPagerTemplate let-totalPages="totalPages" let-currentPage="currentPage">
+                    <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+                    <kendo-pager-numeric-buttons [buttonCount]="10"></kendo-pager-numeric-buttons>
+                    <kendo-pager-next-buttons></kendo-pager-next-buttons>
+                    <kendo-pager-info></kendo-pager-info>
+                    <kendo-pager-page-sizes [pageSizes]="[5, 10, 20, 50]"></kendo-pager-page-sizes>
+                </ng-template>
+                <kendo-grid-pdf fileName="ManageForm.pdf" paperSize="A4" [repeatHeaders]="true" [allPages]="true">
+                    <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+                    <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+                        <div class="page-template">
+                            <div class="header">
+                                <div style="float: right">{{securityObj.companyName}}</div>
+                                Manage Form List
+                            </div>
+                            <div class="footer">
+                                <div style="float: right">{{now | date:'yyyy-MM-dd hh:mm:ss'}}</div>
+                                <div style="float: left">Page {{ pageNum }} of {{ totalPages }}</div>
+                            </div>
+                        </div>
+                    </ng-template>
+                    <kendo-grid-column field="id" title="Key" width="120">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="userName" title="User Name">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="firstName" title="First Name">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="middleName" title="Middle Name">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="lastName" title="Last Name">
+                    </kendo-grid-column>
+                    <kendo-grid-column field="email" title="Email">
+                    </kendo-grid-column>
+                    
+                </kendo-grid-pdf>
+                <kendo-grid-excel fileName="ManageForm.xlsx" [fetchData]="allData">
+                    <kendo-excelexport-column title="Company">
+                        <kendo-excelexport-column title="Export Date">
+                            <kendo-excelexport-column title="Page">
+                                <kendo-excelexport-column field="templateCode" title="Template Code">
+                                </kendo-excelexport-column>
+                            </kendo-excelexport-column>
+                        </kendo-excelexport-column>
+                    </kendo-excelexport-column>
+                    <kendo-excelexport-column title="{{securityObj.companyName}}">
+                        <kendo-excelexport-column title="{{now | date:'yyyy-MM-dd hh:mm:ss'}}">
+                            <kendo-excelexport-column title="Manage Form List">
+                                <kendo-excelexport-column field="userName" title="User Name">
+                                </kendo-excelexport-column>
+                            </kendo-excelexport-column>
+                        </kendo-excelexport-column>
+                    </kendo-excelexport-column>
+                    <kendo-excelexport-column field="firstName" title="First Name">
+                    </kendo-excelexport-column>
+                    <kendo-excelexport-column field="middleName" title="Middle Name">
+                    </kendo-excelexport-column>
+                    <kendo-excelexport-column field="lastName" title="Last Name">
+                    </kendo-excelexport-column>
+                    <kendo-excelexport-column field="email" title="Email">
+                    </kendo-excelexport-column>
+                    <kendo-excelexport-column field="role" title="Role">
+                    </kendo-excelexport-column>
+                    
+                </kendo-grid-excel>
+                <kendo-grid-column title="Action" [headerStyle]="{'width': '150px'}"
+                [style]="{'width': '150px'}" [sortable]="false">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <div class="form-row">
+                            <div class="col-md-auto">
+                                <grid-buttons [moduleId]="moduleId" [dataItem]="dataItem" [ctrlName]="config.table"
+                                    [hideEdit]="config.hideEdit" [customDelete]="config.customDelete" [that]="this"
+                                    (deleteClick)="deleteClick.emit(dataItem.id)"
+                                    (editClick)="editClick.emit(dataItem.id)" (deleted)="deleted.emit()"
+                                    [screenCode]="config.screenCode">
+                                </grid-buttons>
+                            </div>
+                            <div class="col-md-auto" *ngIf="dataItem.isLocked " >
+                                <span class="badge-grid-action badge-red" (click)="UnBlockSearch(dataItem.id)">
+                                    <i class="fa fa-lock text-red grd-edit-del"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="id" title="Key" width="80">
+                </kendo-grid-column>
+                <kendo-grid-column field="userName" title="User Name" width="140">
+                </kendo-grid-column>
+                <kendo-grid-column field="firstName" title="First Name" width="100">
+                </kendo-grid-column>
+                <kendo-grid-column field="middleName" title="Middle Name" width="100">
+                </kendo-grid-column>
+                <kendo-grid-column field="lastName" title="Last Name" width="100">
+                </kendo-grid-column>
+                <kendo-grid-column field="email" title="Email" width="140">
+                </kendo-grid-column>
+                <kendo-grid-column field="phone" title="Contact Number" width="140">
+                </kendo-grid-column>
+                <kendo-grid-column field="role" title="Role" width="140">
+                </kendo-grid-column>
+                <kendo-grid-column field="validFrom" title="Valid From">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.validFrom | dateTimeFormat }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="validTo" title="Valid To">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.validTo | dateTimeFormat }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column field="companyName" title="Company" width="140">
+                </kendo-grid-column>
+            </kendo-grid>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+<div>
+    <master-header title="Beneficiary Category" tableName="beneficiarycategory" (saveClick)="onSave()" [id]="id"
+        [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Company Name</label>
+                        <kendo-dropdownlist formControlName="companyID" [defaultItem]="defaultCompany"
+                            [data]="companies" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true"
+                            required>
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('companyID').hasError('required') && form.get('companyID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Beneficiary Category</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="beneficiaryCategoryName"
+                            maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('beneficiaryCategoryName').hasError('required') && form.get('beneficiaryCategoryName').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

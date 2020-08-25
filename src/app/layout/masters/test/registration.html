@@ -1,0 +1,108 @@
+
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Full Name</label>
+        <input type="text" class="k-textbox w-100" formControlName="FullName" maxlength="30" noSpace />
+        <div class="required-text"
+             *ngIf="form.get('fullName').hasError('required') && form.get('fullName').touched">
+          This field is required!
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">User Name</label>
+        <input type="text" class="k-textbox w-100" formControlName="UesrName" maxlength="10" noSpace />
+        <div class="required-text"
+             *ngIf="form.get('UserName').hasError('required') && form.get('UserName').touched">
+          This field is required!
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Password</label>
+        <input type="password" class="k-textbox w-100" formControlName="Password" maxlength="10" noSpace />
+        <div class="required-text"
+             *ngIf="form.get('UserName').hasError('required') && form.get('Password').touched">
+          This field is required!
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Confirm Password</label>
+        <input type="password" class="k-textbox w-100" formControlName="ConfirmPassword" maxlength="10" noSpace />
+       </div>
+      </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Title</label>
+        <input type="text" class="k-textbox w-100" formControlName="Title" maxlength="10" noSpace />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Address</label>
+        <input type="text" class="k-textbox w-100" formControlName="Address" maxlength="10" noSpace />
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Email</label>
+        <input type="text" class="k-textbox w-100" formControlName="Email" maxlength="10" noSpace />
+        <div class="required-text"
+             *ngIf="form.get('UserName').hasError('required') && form.get('UserName').touched">
+          This field is required!
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Mobile</label>
+        <input type="text" class="k-textbox w-100" formControlName="Mobile" maxlength="10" noSpace />
+        <div class="required-text"
+             *ngIf="form.get('UserName').hasError('required') && form.get('UserName').touched">
+          This field is required!
+        </div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Photo</label>
+        <input type="image" class="k-textbox w-100" formControlName="Photo" maxlength="10" noSpace />
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Company</label>
+        <input type="text" class="k-textbox w-100" formControlName="Company" maxlength="10" noSpace />
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Type of user</label>
+        <input type="text" class="k-textbox w-100" formControlName="UesrName" maxlength="10" noSpace />
+      </div>
+    </div>
+  </form>
+<div class="copyright-text">
+  <div class="form-row justify-content-center">
+    <div class="col-md-auto col-auto">Version:</div>
+    <div class="col-md-auto col-auto">1.0.1</div>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col-md-auto col-auto">&copy; All copyrights & powered by : Index Procurement</div>
+  </div>
+</div>

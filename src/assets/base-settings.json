@@ -1,0 +1,8 @@
+{
+  "baseUrl": "https://devapi.indxpro.com/api/",
+  "production": false,
+  "hmr": false,
+  "signalrUrl": "https://devapi.indxpro.com/notify"
+}
+
+ 

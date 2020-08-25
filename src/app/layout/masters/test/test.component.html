@@ -1,0 +1,61 @@
+<app-master-grid
+  #grid
+  *ngIf="!showDetails"
+  [config]="gridConfig"
+  (addClick)="onAdd()"
+  (editClick)="onEdit($event)"
+  (deleteClick)="onDelete($event)"
+></app-master-grid>
+
+<div *ngIf="showDetails">
+  <master-header
+    title="test"
+    tableName="test"
+    (saveClick)="onSave()"
+    [id]="id"
+    [formGroup]="form"
+    (backClick)="onBack()"
+    (resetClick)="onReset()"
+    [screenCode]="data.screenCode"
+  ></master-header>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Test Group</label>
+        <kendo-combobox
+          [data]="testGroupDataSource"
+          formControlName="testGroupId"
+          [valuePrimitive]="true"
+          textField="value"
+          valueField="id"
+          class="w-100"
+          [popupSettings]="{ width: 'auto' }"
+        >
+        </kendo-combobox>
+        <div class="required-text" *ngIf="form.get('testGroupId').hasError('required') && form.get('testGroupId').touched">
+          This field is required!
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label class="label-primary">Test Name</label>
+        <input type="text" class="k-textbox w-100" formControlName="testName" maxlength="200"  noSpace/>
+        <div class="required-text" *ngIf="form.get('testName').hasError('required') && form.get('testName').touched">
+          This field is required!
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label class="label-primary">Anticoagulant</label>
+        <input type="text" class="k-textbox w-100" formControlName="anticoagulant" maxlength="200" noSpace/>
+        <div class="required-text" *ngIf="form.get('anticoagulant').hasError('required') && form.get('anticoagulant').touched">
+          This field is required!
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Description</label>
+        <input type="text" class="k-textbox w-100" formControlName="notes" maxlength="200" noSpace/>
+      </div>
+    </div>
+  </form>
+</div>

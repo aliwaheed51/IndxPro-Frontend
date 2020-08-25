@@ -1,0 +1,59 @@
+<app-master-grid
+  #grid
+  *ngIf="!showDetails"
+  [config]="gridConfig"
+  (addClick)="onAdd()"
+  (editClick)="onEdit($event)"
+  (deleteClick)="onDelete($event)"
+></app-master-grid>
+
+<div *ngIf="showDetails">
+  <master-header
+    title="Document Name"
+    tableName="DocumentName"
+    (saveClick)="onSave()"
+    [id]="id"
+    [formGroup]="form"
+    (backClick)="onBack()"
+    (resetClick)="onReset()"
+    [screenCode]="data.screenCode"
+  ></master-header>
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Screen Name</label>
+        <input kendoTextBox type="text" class="w-100" formControlName="screenName" maxlength="100" noSpace/>
+        <div class="required-text"
+          *ngIf="form.get('screenName').hasError('required') && form.get('screenName').touched">
+          This field is required!
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label class="label-primary">Document Type</label>
+        <kendo-combobox
+          [data]="parentAppScreenDataSource"
+          formControlName="parentAppScreenId"
+          [valuePrimitive]="true"
+          textField="value"
+          valueField="id"
+          class="w-100"
+          [popupSettings]="{ width: 'auto' }"
+        >
+        </kendo-combobox>
+        <div class="required-text" *ngIf="form.get('parentAppScreenId').hasError('required') && form.get('parentAppScreenId').touched">
+          This field is required!
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label class="label-primary">URL</label>
+        <input kendoTextBox type="text" class="w-100" formControlName="urlName" maxlength="100" noSpace/>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label class="label-primary">Sequence</label>
+        <input kendoTextBox type="text" class="w-100" formControlName="seqNo"  numOnly noSpace/>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,44 @@
+<div>
+    <master-header title="Finish Catergories" tableName="finishCatergories" (saveClick)="onSave()" [id]="id" [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Specification Type</label>
+                        <kendo-dropdownlist formControlName="specificationTypeID" [defaultItem]="default" [data]="specificationTypes" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('specificationTypeID').hasError('required') && form.get('specificationTypeID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Item Type</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="itemType" maxlength="200" noSpace />
+                        <div class="required-text" *ngIf="form.get('itemType').hasError('required') && form.get('itemType').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Item Categories</label>
+                        <kendo-dropdownlist formControlName="itemCategoryID" [defaultItem]="defaultCategory" [data]="itemCategories" [textField]="'categoryName'" [valueField]="'categoryId'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('itemCategoryID').hasError('required') && form.get('itemCategoryID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Item Description</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="itemDescription" maxlength="200" noSpace />
+                        <div class="required-text" *ngIf="form.get('itemDescription').hasError('required') && form.get('itemDescription').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

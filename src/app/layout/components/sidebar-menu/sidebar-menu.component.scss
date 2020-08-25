@@ -1,0 +1,145 @@
+@import "../../../../assets/scss/colors.scss";
+:host {
+    background: $primary;
+    color: $text-primary;
+    position: fixed;
+    right: auto;
+    top: 105px;
+    left: 0;
+    bottom: 0;
+    min-width: 215px;
+    z-index: 9999;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.parent-nav {
+    overflow: hidden;
+    height: 8%;
+    // position: fixed;
+    // top: 0;
+    // width: 100%;
+}
+
+ul {
+    font-weight: 400;
+    list-style: none;
+}
+
+.menu-title {
+    font-size: 14px;
+    padding: 10px 0 10px 10px;
+}
+
+#navbar {
+    overflow: hidden;
+    width: 100%;
+}
+
+#navbar a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+#navbar2 {
+    overflow: hidden;
+    background-color: #333;
+    width: 100%;
+}
+
+#navbar2 a {
+    float: left;
+    display: block;
+    color: #000000 !important;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+// .navbar-nav .nav-link {
+//     float: left;
+//     display: block;
+//     text-align: center;
+//     padding: 14px 16px;
+//     cursor: pointer;
+//     color: $text-primary;
+//     padding: 1rem 1rem;
+//     .k-icon {
+//         margin-left: 20px;
+//     }
+//     &:hover {
+//         background: #00000021;
+//         color: #000000 !important;
+//         box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+//     }
+// }
+.second-level-sidebar {
+    background-color: $white;
+    margin-top: 53px;
+    height: 100vh;
+    width: 237px;
+    position: absolute;
+    top: 0px;
+    //left: 216px;
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    .submenu-items {
+        overflow-y: auto;
+        height: calc(100vh - 165px);
+    }
+}
+
+.second-menu-list {
+    list-style: none;
+    color: $text-primary;
+    padding-left: 20px;
+    line-height: 40px;
+    cursor: pointer;
+    &:hover {
+        background: #00000021;
+        color: #000000 !important;
+        box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    }
+}
+
+.parent-menu {
+    // background-color: #def4ff;
+    // color: #096b9a;
+    padding: 20px 0 10px 26px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 5px;
+    right: 9px;
+    color: $text-primary;
+    z-index: 5;
+    cursor: pointer;
+    i {
+        font-size: 23px;
+    }
+}
+
+.ng-trigger-slideInOut .second-level-sidebar {
+    left: -237px;
+}
+
+@media only screen and (max-width: 767px) {
+     :host {
+        min-width: 167px;
+        padding: 20px 10px;
+    }
+    .second-level-sidebar {
+        width: 237px;
+        left: 160px;
+    }
+    .navbar-nav .nav-link {
+        padding: 1rem 0.5rem;
+        .fa {
+            margin-right: 10px;
+        }
+    }
+}

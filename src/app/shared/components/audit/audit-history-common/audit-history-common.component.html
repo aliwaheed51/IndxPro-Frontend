@@ -1,0 +1,127 @@
+<div class="modal-body">
+  <div class="row">
+    <div class="form-group col-md-12">
+      <kendo-grid [globalFilter]="globalFilter" [height]="600" gridDataBinding="AuditTrailCommon/search"
+        [searchObject]="data.search" [pageSize]="20" scrollable="true" [pageable]="true" [sortable]="true"
+        [filterable]="false" [groupable]="true">
+        <ng-template kendoGridToolbarTemplate>
+          <div class="row align-items-center">
+            <div class="col-md-3 modal-title mobile-pl-20">{{ data.search.pageName }} Audit History</div>
+            <div class="col-sm-4 search-area-new">
+              <div class="search-wrapper-new">
+                <div class="search">
+                  <input type="text" class="w-100" kendoTextBox placeholder="Search"
+                    [(ngModel)]="globalFilter" />
+                  <span class="fa fa-search form-control-feedback"></span>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-auto ml-auto mobile-mt-10">
+              <kendo-dropdownbutton [data]="buttonData" [icon]="'download'" class="mr-1">
+                <span class="btn-circle-icon btn-cicle-yellow">
+                  <i class="las la-download"></i>
+                </span>
+                Export
+                <ng-template kendoDropDownButtonItemTemplate let-dataItem>
+                  <span *ngIf="dataItem.type === 'pdf'" kendoGridPDFCommand icon="file-pdf">{{ dataItem.text }}</span>
+                  <span *ngIf="dataItem.type === 'excel'" kendoGridExcelCommand
+                    icon="file-excel">{{ dataItem.text }}</span>
+                </ng-template>
+              </kendo-dropdownbutton>
+              <button class="btn-white btn-border btn-add" (click)="close()">
+                <span class="btn-circle-icon btn-cicle-red"><img src="./assets/images/close-white.svg" /></span>
+                Cancel
+              </button>
+            </div>
+          </div>
+        </ng-template>
+        <ng-template kendoPagerTemplate let-totalPages="totalPages" let-currentPage="currentPage">
+          <kendo-pager-prev-buttons></kendo-pager-prev-buttons>
+          <kendo-pager-numeric-buttons [buttonCount]="10"></kendo-pager-numeric-buttons>
+          <kendo-pager-next-buttons></kendo-pager-next-buttons>
+          <kendo-pager-info></kendo-pager-info>
+          <kendo-pager-page-sizes [pageSizes]="[5, 10, 20, 50]"></kendo-pager-page-sizes>
+        </ng-template>
+        <kendo-grid-pdf fileName="{{ data.search.pageName }}_Audit History.pdf" paperSize="A4" [repeatHeaders]="true"
+          [allPages]="true">
+          <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+          <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+            <div class="page-template">
+              <div class="header">
+                <div style="float: right;">{{ companyName }}</div>
+                {{ data.search.pageName }} Audit History
+              </div>
+              <div class="footer">
+                <div style="float: right;">{{ now.toString() | dateTimeFormat }}</div>
+                <div style="float: left;">Page {{ pageNum }} of {{ totalPages }}</div>
+              </div>
+            </div>
+          </ng-template>
+          <kendo-grid-column field="recordId" title="Key"> </kendo-grid-column>
+          <kendo-grid-column field="ipAddress" title="IP Address"> </kendo-grid-column>
+          <kendo-grid-column field="action" title="Action"> </kendo-grid-column>
+          <kendo-grid-column field="columnName" title="Field Name"> </kendo-grid-column>
+          <kendo-grid-column field="oldValue" title="Old Value"> </kendo-grid-column>
+          <kendo-grid-column field="newValue" title="New Value"> </kendo-grid-column>
+          <kendo-grid-column field="reasonName" title="Reason"> </kendo-grid-column>
+          <kendo-grid-column field="reasonOth" title="Comments"> </kendo-grid-column>
+          <kendo-grid-column field="userName" title="User"> </kendo-grid-column>
+          <kendo-grid-column field="userRoleName" title="Role"> </kendo-grid-column>
+          <kendo-grid-column field="createdDate" title="Date Time">
+            <ng-template kendoGridCellTemplate let-dataItem>
+              {{ dataItem.createdDate | dateTimeFormat }}
+            </ng-template>
+          </kendo-grid-column>
+          <kendo-grid-column field="timeZone" title="Time Zone"> </kendo-grid-column>
+        </kendo-grid-pdf>
+
+        <kendo-grid-excel [fetchData]="allData" fileName="{{ data.search.pageName }}_Audit History.xlsx">
+          <kendo-excelexport-column title="Company">
+            <kendo-excelexport-column title="Export Date">
+              <kendo-excelexport-column title="Page">
+                <kendo-excelexport-column field="recordId" title="Key"> </kendo-excelexport-column>
+              </kendo-excelexport-column>
+            </kendo-excelexport-column>
+          </kendo-excelexport-column>
+          <kendo-excelexport-column title="{{ companyName }}">
+            <kendo-excelexport-column title="{{ now | date: 'yyyy-MM-dd hh:mm:ss' }}">
+              <kendo-excelexport-column title="{{ data.search.pageName }} Audit History">
+                <kendo-excelexport-column field="ipAddress" title="IP Address"> </kendo-excelexport-column>
+              </kendo-excelexport-column>
+            </kendo-excelexport-column>
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="action" title="action"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="columnName" title="Field Name" width="150"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="oldValue" title="Old Value" width="150"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="newValue" title="New Value" width="150"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="reasonName" title="Reason" width="250"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="reasonOth" title="Comments" width="250"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="userName" title="User" width="150"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="userRoleName" title="Role" width="150"> </kendo-excelexport-column>
+          <kendo-excelexport-column field="createdDate" title="Date Time" width="200">
+            <ng-template kendoGridCellTemplate let-dataItem>
+              {{ dataItem.createdDate | dateTimeFormat }}
+            </ng-template>
+          </kendo-excelexport-column>
+          <kendo-excelexport-column field="timeZone" title="Time Zone" width="150"> </kendo-excelexport-column>
+        </kendo-grid-excel>
+        <kendo-grid-column field="recordId" title="Key" width="110"> </kendo-grid-column>
+        <kendo-grid-column field="ipAddress" title="IP Address" width="180"> </kendo-grid-column>
+        <kendo-grid-column field="action" title="Action" width="130"> </kendo-grid-column>
+        <kendo-grid-column field="columnName" title="Field Name" width="200"> </kendo-grid-column>
+        <kendo-grid-column field="oldValue" title="Old Value" width="250"> </kendo-grid-column>
+        <kendo-grid-column field="newValue" title="New Value" width="250"> </kendo-grid-column>
+        <kendo-grid-column field="reasonName" title="Reason" width="200"> </kendo-grid-column>
+        <kendo-grid-column field="reasonOth" title="Comments" width="200"> </kendo-grid-column>
+        <kendo-grid-column field="userName" title="User" width="180"> </kendo-grid-column>
+        <kendo-grid-column field="userRoleName" title="Role" width="180"> </kendo-grid-column>
+        <kendo-grid-column field="createdDate" title="Date Time" width="200">
+          <ng-template kendoGridCellTemplate let-dataItem>
+            {{ dataItem.createdDate | dateTimeFormat }}
+          </ng-template>
+        </kendo-grid-column>
+        <kendo-grid-column field="timeZone" title="Time Zone" width="180"> </kendo-grid-column>
+      </kendo-grid>
+    </div>
+  </div>
+</div>

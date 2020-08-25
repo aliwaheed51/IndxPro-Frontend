@@ -1,0 +1,28 @@
+<div *ngIf="!showDetails">
+    <div class="stepper-content" *ngIf="!showDetails">
+        <button type="button" class="btn-theme mr-1 mb-3" (click)="addClick()">
+            <span class="btn-circle-icon btn-circle-theme">
+                <i class="fa fa-plus"></i>
+            </span>
+            Add New
+        </button>
+        <kendo-grid [data]="gridData" [pageSize]="20" [sortable]="true" [pageable]="true">
+            <kendo-grid-command-column title="Action" width="50">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span class="badge-grid-action badge-blue mr-2" (click)="editClick(dataItem.id)">
+                        <i class="las la-edit text-blue grd-edit-del"></i>
+                    </span>
+                    <!-- <span class="badge-grid-action badge-red" (click)="onDelete(dataItem.id)">
+                        <i class="las la-trash text-red grd-edit-del"></i>
+                    </span> -->
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column field="roleName" width="200" title="Role Name">
+            </kendo-grid-column>
+            
+        </kendo-grid>
+    </div>
+</div>
+
+<app-department *ngIf="showDetails" (backClick)="onBack()" [data]='data'>
+</app-department>

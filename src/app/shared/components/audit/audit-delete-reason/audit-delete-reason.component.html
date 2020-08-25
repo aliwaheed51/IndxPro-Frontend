@@ -1,0 +1,87 @@
+<!-- <div>
+  <div class="row">
+    <div class="col-sm-12">
+      Specify Reason
+    </div>
+  </div>
+
+  <div class="content kendo-controls-theme">
+    <div *ngIf="data && data.message" class="row control-inner-icon">
+      <div class="col-sm-12 alert alert-danger mt-3">
+        {{ data?.message }}
+      </div>
+    </div>
+
+    <div class="row control-inner-icon">
+      <div class="col-sm-12">
+        <select class="select-option" #reason (change)="reasonChanged(reason.value)" [(ngModel)]="dataItem.reasonId">
+          <option class="option" *ngFor="let option of auditReasons" [value]="option.id">{{ option.reasonName }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="row control-inner-icon" *ngIf="dataItem.isOther">
+      <div class="col-sm-12">
+        <kendo-textbox-container class="width-100" floatingLabel="Comments">
+          <input kendoTextBox [(ngModel)]="dataItem.reasonOth" [ngModelOptions]="{ standalone: true }" />
+          <img src="assets/images/code.png" class="imgage" />
+        </kendo-textbox-container>
+      </div>
+    </div>
+  </div>
+  <div class="text-right kendo-buttons-area p-3">
+    <button kendoButton class="btn-master-success mr-2" [disabled]="isInvalid()" (click)="proceed()"><i class="fa fa-save"></i> Proceed</button>
+    <button kendoButton class="btn-master-warning" (click)="close()"><i class="fa fa-close"></i> Cancel</button>
+  </div>
+</div> -->
+
+<div class="modal-header">
+  <div class="form-row align-items-center w-100">
+    <div class="col-md-auto col-auto">
+      <h4 class="modal-title">Reason For Change</h4>
+    </div>
+    <div class="col-md-auto ml-auto col">
+      <button class="btn-gray btn-add mr-2" [disabled]="isInvalid()" (click)="proceed()">
+        <span class="btn-circle-icon btn-cicle-green">
+          <img src="./assets/images/check-small.svg" />
+        </span>
+        Proceed
+      </button>
+      <button class="btn-gray btn-add" (click)="close()">
+        <span class="btn-circle-icon btn-cicle-red"><img src="./assets/images/close-white.svg" /></span>
+        Cancel
+      </button>
+    </div>
+  </div>
+</div>
+<div class="modal-body">
+  <div class="row">
+    <div class="col-sm-12 alert alert-danger mt-3" *ngIf="data && data.message">
+      {{ data?.message }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="form-group col-md-12">
+      <label>Select Reason</label>
+      <kendo-combobox
+        [data]="auditReasons"
+        [valuePrimitive]="true"
+        textField="reasonName"
+        class="w-100"
+        [(ngModel)]="dataItem.reasonId"
+        [ngModelOptions]="{ standalone: true }"
+        valueField="id"
+        (valueChange)="reasonChanged($event)"
+      >
+      </kendo-combobox>
+      <!-- <select class="form-control" #reason (change)="reasonChanged(reason.value)" [(ngModel)]="dataItem.reasonId">
+        <option class="option" *ngFor="let option of auditReasons" [value]="option.id">{{ option.reasonName }}
+        </option>
+      </select> -->
+    </div>
+    <div class="form-group col-md-12" *ngIf="dataItem.isOther">
+      <label>Specify Details</label>
+      <input kendoTextBox [(ngModel)]="dataItem.reasonOth" [ngModelOptions]="{ standalone: true }" class="w-100" />
+    </div>
+  </div>
+</div>

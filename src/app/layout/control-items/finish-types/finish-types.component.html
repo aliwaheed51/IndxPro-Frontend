@@ -1,0 +1,31 @@
+<div>
+    <master-header title="Finish Types" tableName="finishTypes" (saveClick)="onSave()" [id]="id"
+        [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Finish Code</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="finishCode"
+                            maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('finishCode').hasError('required') && form.get('finishCode').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Finish Type</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="finishType"
+                            maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('finishType').hasError('required') && form.get('finishType').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

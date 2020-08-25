@@ -1,0 +1,133 @@
+@import "../scss/colors.scss";
+.bg-light {
+  background-color: $white !important;
+}
+
+.navbar {
+  height: 60px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+  .logo {
+    max-height: 40px;
+  }
+}
+
+.img-profile {
+  height: 2rem;
+  width: 2rem;
+  box-shadow:0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.no-arrow {
+  .dropdown-toggle::after {
+    display: none;
+  }
+  .user-name {
+    line-height: 15px;
+  }
+  .role {
+    line-height: 11px;
+    font-size: 0.75rem;
+  }
+}
+
+.wrapper {
+  display: -webkit-box;
+  display: flex;
+  position: relative;
+  margin-top: 203px;
+}
+
+.menu-bar {
+  height: 47px;
+  position: fixed;
+  top: 60px;
+  width: 100%;
+  background-color: $menu-bg;
+  border-left: 0;
+  z-index: 1029;
+  border-right: 0;
+  // box-shadow: 0 4px 10px rgba(0,0,0,.25);
+  color: $text-primary;
+  i,img {
+    margin-right: 8px;
+  }
+}
+
+.dropdown-menu{
+  margin:0;
+  border:none;
+  border-radius: 0;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+.dropdown-item{
+  color: $text-primary !important;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+  background: #00000021;
+  color: #000000 !important;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+.nav-breadcrumb {
+  display: inline;
+  li {
+    list-style: none;
+    color: $text-primary;
+    display: inline;
+    a {
+      color: $text-primary;
+    }
+  }
+  .breadcrumb-item + .breadcrumb-item::before {
+    display: inline-block;
+    padding-right: 0.5rem;
+    font-family: fontAwesome;
+    content: "\f054";
+    font-size: 0.6rem;
+    color: $text-primary;
+  }
+  .breadcrumb-item.active {
+    color: $text-primary;
+  }
+}
+
+.filter-bar {
+  height: 80px;
+  position: fixed;
+  top: 123px;
+  width: 100%;
+  background-color: $menu-bg;
+  border: 1px solid #dfdfdf;
+  border-left: 0;
+  z-index: 1029;
+  border-right: 0;
+  border-top: 0;
+}
+
+.navbar-expand .navbar-nav .dropdown-menu {
+  position: absolute;
+  z-index: 11111;
+}
+
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu > .dropdown-menu {
+  top: 0;
+  left: -10rem; /* 10rem is the min-width of dropdown-menu */
+  margin-top: -6px;
+}
+
+/* rotate caret on hover */
+.dropdown-menu > li > a:hover:after {
+  text-decoration: underline;
+  transform: rotate(-90deg);
+}
+
+.dropdown-menu li {
+  cursor: pointer;
+}
+
+.dropdown-toggle-img::after {
+  display: none !important;
+}

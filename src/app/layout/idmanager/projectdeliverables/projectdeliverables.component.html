@@ -1,0 +1,48 @@
+<div>
+    <master-header title="Project Area" tableName="ProjectArea" (saveClick)="onSave()" [id]="id" [formGroup]="form"
+        (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Company</label>
+                <kendo-combobox [data]="companies" formControlName="companyId" [valuePrimitive]="true" textField="value"
+                    (valueChange)="companychange($event)" valueField="id" class="w-100"
+                    [popupSettings]="{ width: 'auto' }">
+                </kendo-combobox>
+                <div class="required-text"
+                    *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>No.</label>
+                <input type="number" class="k-textbox w-100" formControlName="srNo" maxlength="200" noSpace />
+                <div class="required-text" *ngIf="form.get('srNo').hasError('required') && form.get('srNo').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Ideal Design Stage List</label>
+                <kendo-combobox [data]="idealDesignStageList" formControlName="projectIDealDesignStageId"
+                    [valuePrimitive]="true" textField="value" valueField="id" class="w-100"
+                    [popupSettings]="{ width: 'auto' }">
+                </kendo-combobox>
+                <div class="required-text"
+                    *ngIf="form.get('projectIDealDesignStageId').hasError('required') && form.get('projectIDealDesignStageId').touched">
+                    This field is required!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label class="label-primary">Project Deliverables</label>
+                <textarea class="k-textbox w-100" formControlName="projectDeliverablesText"></textarea>
+                <div class="required-text"
+                    *ngIf="form.get('projectDeliverablesText').hasError('required') && form.get('projectDeliverablesText').touched">
+                    This field is required!
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>

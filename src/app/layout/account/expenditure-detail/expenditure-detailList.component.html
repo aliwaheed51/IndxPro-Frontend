@@ -1,0 +1,139 @@
+<div *ngIf="!showDetails">
+    <div class="stepper-content" *ngIf="!showDetails">
+        <button type="button" class="btn-theme mr-1 mb-3" (click)="addClick()">
+            <span class="btn-circle-icon btn-circle-theme">
+                <i class="fa fa-plus"></i>
+            </span>
+            Add New
+        </button>
+        <kendo-grid [groupable]="true" [reorderable]="true" [resizable]="true" [columnMenu]="{ filter: true }"
+            [kendoGridBinding]="gridView" [pageSize]="20" [sortable]="true" [pageable]="true">
+            <ng-template kendoGridToolbarTemplate>
+                <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)"
+                    style="float: left; margin-right: 5px;" />
+                <div style="width: 30%; float: left;">
+                    <kendo-buttongroup [selection]="'single'" [width]="'100%'">
+                        <button *ngFor="let cat of paymentCategories" kendoButton [toggleable]="true"
+                            [selected]="cat.selected" (selectedChange)="onPaymentCategoryClick($event, cat)">
+                            <span>
+                                {{ cat.text }}
+                            </span>
+                        </button>
+                    </kendo-buttongroup>
+                </div>
+                <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to
+                    Excel
+                </button>
+                <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+            </ng-template>
+            <kendo-grid-command-column title="Action" width="200">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span class="badge-grid-action badge-blue mr-2" (click)="editClick(dataItem.id)">
+                        <i class="las la-edit text-blue grd-edit-del"></i>
+                    </span>
+                    <span class="badge-grid-action badge-red" (click)="onDelete(dataItem.id)">
+                        <i class="las la-trash text-red grd-edit-del"></i>
+                    </span>
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column field="companyName" width="200" title="Company Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="paymentCategory" width="200" title="Payment Category">
+            </kendo-grid-column>
+            <kendo-grid-column field="expenseType" width="200" title="Expense Type">
+            </kendo-grid-column>
+            <kendo-grid-column field="paid" width="200" title="Bill due">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.paid | date: 'MM/dd/yyyy'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="beneficiaryCategoryName" width="200" title="Beneficiary Category Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="expenditureTypeName" width="200" title="Expenditure Type Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="beneficiaryNameName" width="200" title="Beneficiary Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="amount" width="200" title="Amount">
+            </kendo-grid-column>
+            <kendo-grid-column field="vat" width="200" title="Vat">
+            </kendo-grid-column>
+            <kendo-grid-column field="currency" width="200" title="Currency">
+            </kendo-grid-column>
+            <kendo-grid-column field="paidBy" width="200" title="Paid By">
+            </kendo-grid-column>
+            <kendo-grid-column field="paymentRefNumber" width="200" title="Payment Ref Number">
+            </kendo-grid-column>
+            <kendo-grid-column field="companyBankAccDetailName" width="200" title="Company Bank Acc Detail Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="invoiceNumber" width="200" title="Invoice Number">
+            </kendo-grid-column>
+            <kendo-grid-column field="invoiceDate" width="200" title="Invoice Date">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    {{dataItem.invoiceDate | date: 'MM/dd/yyyy'}}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="note" width="200" title="Note">
+            </kendo-grid-column>
+
+            <kendo-grid-pdf fileName="ExpenditureDetail.pdf" paperSize="A4" [scale]="0.8" [repeatHeaders]="true">
+                <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+                <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+                    <div class="page-template">
+                        <div class="header">
+                            <div style="float: right"> Expenditure Detail </div>
+                            Index Procurement
+                        </div>
+                        <div class="footer">
+                            Page {{ pageNum }} of {{ totalPages }}
+                        </div>
+                    </div>
+                </ng-template>
+                <kendo-grid-column [columnMenu]="false" field="companyName" width="50" title="Company Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="paymentCategory" width="50" title="Payment Category">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="expenseType" width="50" title="Expense Type">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="paid" width="50" title="Bill due">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.paid | date: 'MM/dd/yyyy'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="beneficiaryCategoryName" width="50"
+                    title="Beneficiary Category Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="expenditureTypeName" width="50"
+                    title="Expenditure Type Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="beneficiaryNameName" width="50" title="Beneficiary Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="amount" width="50" title="Amount">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="vat" width="50" title="Vat">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="currency" width="50" title="Currency">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="paidBy" width="50" title="Paid By">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="paymentRefNumber" width="50" title="Payment Ref Number">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="companyBankAccDetailName" width="50"
+                    title="Company Bank Acc Detail Name">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="invoiceNumber" width="50" title="Invoice Number">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="invoiceDate" width="50" title="Invoice Date">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{dataItem.invoiceDate | date: 'MM/dd/yyyy'}}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="note" width="50" title="Note">
+                </kendo-grid-column>
+            </kendo-grid-pdf>
+            <kendo-grid-excel fileName="ExpenditureDetail.xlsx"></kendo-grid-excel>
+        </kendo-grid>
+    </div>
+</div>
+
+<app-expenditure-detail *ngIf="showDetails" (backClick)="onBack()" [data]='data'>
+</app-expenditure-detail>

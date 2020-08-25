@@ -1,0 +1,94 @@
+<div *ngIf="!showDetails">
+    <div class="stepper-content" *ngIf="!showDetails">
+        <button type="button" class="btn-theme mr-1 mb-3" (click)="addClick()">
+            <span class="btn-circle-icon btn-circle-theme">
+                <i class="fa fa-plus"></i>
+            </span>
+            Add New
+        </button>
+        <kendo-grid [groupable]="true" [reorderable]="true" [resizable]="true" [columnMenu]="{ filter: true }"
+            [kendoGridBinding]="gridView" [pageSize]="20" [sortable]="true" [pageable]="true">
+            <ng-template kendoGridToolbarTemplate>
+                <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)" />
+                <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to
+                    Excel</button>
+                <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+            </ng-template>
+            <kendo-grid-command-column title="Action" width="80">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span class="badge-grid-action badge-blue mr-2" (click)="editClick(dataItem.id)">
+                        <i class="las la-edit text-blue grd-edit-del"></i>
+                    </span>
+                    <span class="badge-grid-action badge-red" (click)="onDelete(dataItem.id)">
+                        <i class="las la-trash text-red grd-edit-del"></i>
+                    </span>
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column width="200" title="Full Name">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <img height="70" width="70" class="customPhoto mr-3" src="{{dataItem.profilePic}}" />
+                    {{ dataItem.firstName }} {{ dataItem.lastName }}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="isEmailVerify" width="80" title="Email Verification">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <kendo-switch class="k-switch w-100" [readonly]="true" [onLabel]="'Yes'"
+                        [(ngModel)]="dataItem.isEmailVerify" [offLabel]="'No'"></kendo-switch>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="isEmployee" width="80" title="Is Employee?">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <kendo-switch class="k-switch w-100" [readonly]="true" [onLabel]="'Yes'"
+                        [(ngModel)]="dataItem.isEmployee" [offLabel]="'No'"></kendo-switch>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="company.companyName" width="200" title="Company">
+            </kendo-grid-column>
+            <kendo-grid-column field="mobile" width="200" title="Mobile">
+            </kendo-grid-column>
+            <kendo-grid-column field="email" width="200" title="Email">
+            </kendo-grid-column>
+            <kendo-grid-column field="userName" width="200" title="User Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="address" width="200" title="Address">
+            </kendo-grid-column>
+            <kendo-grid-pdf fileName="User.pdf" paperSize="A4" [scale]="0.8" [repeatHeaders]="true">
+                <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+                <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+                    <div class="page-template">
+                        <div class="header">
+                            <div style="float: right"> User List </div>
+                            Index Procurement
+                        </div>
+                        <div class="footer">
+                            Page {{ pageNum }} of {{ totalPages }}
+                        </div>
+                    </div>
+                </ng-template>
+                <kendo-grid-column [columnMenu]="false" title="Full Name">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.firstName }} {{ dataItem.lastName }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="userName" title="UserName">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="mobile" title="Mobile">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" class="text-wrap" width=200  field="email" title="Email">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="address" title="Address">
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" field="isEmailVerify"  title="Email Verification">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        <i class="fa fa-check text-green" *ngIf="dataItem.isEmailVerify == true"></i>
+                        <i class="fa fa-close text-red" *ngIf="dataItem.isEmailVerify == false "></i>
+                    </ng-template>
+                </kendo-grid-column>
+            </kendo-grid-pdf>
+            <kendo-grid-excel fileName="User.xlsx"></kendo-grid-excel>
+        </kendo-grid>
+    </div>
+</div>
+
+<app-user *ngIf="showDetails" (backClick)="onBack()" [data]='data'>
+</app-user>

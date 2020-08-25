@@ -1,0 +1,5 @@
+<div class="role-access-grid">
+  <app-master-grid #grid *ngIf="!showDetails" [config]="gridConfig" (addClick)="openRolePermissionPopup(null)"
+    (editClick)="onEdit($event)" (deleteClick)="onDelete($event)">
+  </app-master-grid>
+</div>

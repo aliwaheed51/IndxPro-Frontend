@@ -1,0 +1,161 @@
+<div class="modal-header">
+    <div class="row align-items-center w-100">
+        <div class="col-md-auto col-auto">
+            <h4 class="modal-title">User Details</h4>
+        </div>
+        <div class="col-md-auto ml-auto col">
+            <button class="btn-gray btn-add mr-2" (click)="onSave()" [disabled]="form.invalid || form.pristine">
+                <span class="btn-circle-icon btn-cicle-green">
+                    <img src="./assets/images/check-small.svg" />
+                </span>
+                Save
+            </button>
+            <button type="button" class="btn-white btn-border mr-1" (click)="onReset()">
+                <span class="btn-circle-icon btn-cicle-blue">
+                    <i class="las la-sync-alt"></i>
+                </span>
+                Reset
+            </button>
+            <button class="btn-gray btn-add" (click)="close()">
+                <span class="btn-circle-icon btn-cicle-red"><img src="./assets/images/close-white.svg" /></span>
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="panel-primary">
+            <div class="row">
+                <div class="col-md">
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>First Name</label>
+                            <input kendoTextBox type="text" class="w-100" formControlName="firstName" maxlength="200"
+                                noSpace />
+                            <div class="required-text"
+                                *ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched">
+                                This field is required!
+                            </div>
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Middle Name</label>
+                            <input kendoTextBox type="text" class="w-100" formControlName="middleName" maxlength="200"
+                                noSpace />
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Last Name</label>
+                            <input kendoTextBox type="text" class="w-100" formControlName="lastName" maxlength="200"
+                                noSpace />
+                            <div class="required-text"
+                                *ngIf="form.get('lastName').hasError('required') && form.get('lastName').touched">
+                                This field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-5">
+                            <label>Phone Number</label>
+                            <input kendoTextBox type="text" class="w-100" formControlName="phone" maxlength="15" numOnly
+                                noSpace />
+                            <div class="required-text"
+                                *ngIf="form.get('phone').hasError('required') && form.get('phone').touched">
+                                only digit allowed!
+                            </div>
+                        </div>
+                        <div class="form-group col-md-7">
+                            <label>Email ID</label>
+                            <input kendoTextBox type="text" class="w-100" formControlName="email" maxlength="200"
+                                noSpace />
+                            <div class="required-text"
+                                *ngIf="form.get('email').hasError('required') && form.get('email').touched">
+                                This field is required!
+                            </div>
+                            <div class="required-text" *ngIf="form.get('email').hasError('email')">
+                                This field is not valid value!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-7">
+                            <label>User Name</label>
+                            <input kendoTextBox type="text" class="w-100" [disableControl]="userDisable"
+                                formControlName="userName" maxlength="40" noSpace />
+                            <div class="required-text"
+                                *ngIf="form.get('userName').hasError('required') && form.get('userName').touched">
+                                This field is required!
+                            </div>
+                        </div>
+                        <div class="form-group col-md-5">
+                            <label>Company Name</label>
+                            <kendo-combobox [data]="companies" formControlName="companyId" [valuePrimitive]="true"
+                                textField="value" valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }">
+                            </kendo-combobox>
+                            <div class="required-text"
+                                *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
+                                This field is required!
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4">
+                            <label>Valid From</label>
+                            <kendo-datepicker class="w-100" (valueChange)="setValidToDate($event)"
+                                placeholder="Valid From" formControlName="validFrom">
+                            </kendo-datepicker>
+
+                        </div>
+                        <div class="form-group col-md-4">
+                            <label>Valid To</label>
+                            <kendo-datepicker class="w-100" [min]="TValidTo" placeholder="Valid To"
+                                formControlName="validTo">
+                            </kendo-datepicker>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="col-md-auto">
+                    <div class="user-pic-control">
+                        <div class="snapshot" *ngIf="webcamImage">
+                            <img [src]="webcamImage.imageAsDataUrl" class="vol-picture" />                      
+                        </div>
+                        <div class="snapshot" *ngIf="!webcamImage">
+                            <img class="avtar" [src]="profilePicPath" class="image vol-picture">
+                        </div>
+                        <div class="action-btn">
+                            <button class="badge badge-blue mr-2 badge-blue-border" (click)="openFileSelection()">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                            </button>
+                             
+                            <button class="badge badge-red badge-red-border" (click)="removeProfilePic()">
+                                <i class="fa  fa-trash" aria-hidden="true"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <input id="fileInput" hidden type="file" (change)="fileChange($event.target.files)"
+                        onclick="this.value = null" accept="image/*" />
+                </div>
+            </div>
+
+        </div>
+        <div class="panel-default">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label>Role Access</label>
+                    <kendo-textbox-container class="w-100">
+                        <kendo-multiselect [data]="userTypes" [(ngModel)]="selectedValues" formControlName="userRole"
+                            [valuePrimitive]="true" textField="value" valueField="id" class="multislt">
+                        </kendo-multiselect>
+                    </kendo-textbox-container>
+                    <div class="req-field"
+                        *ngIf="form.get('userRole').hasError('required') && form.get('userRole').touched">
+                        This field is required!
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </form>
+</div>
+ 

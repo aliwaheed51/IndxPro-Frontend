@@ -1,0 +1,110 @@
+<div>
+    <master-header title="Beneficiary Category" tableName="beneficiarycategory" (saveClick)="onSave()" [id]="id"
+        [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Company Name</label>
+                        <kendo-dropdownlist formControlName="companyID" (valueChange)="companychange($event)" [defaultItem]="default" [data]="companies"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('companyID').hasError('required') && form.get('companyID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Project Ref. No</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="projectRefNumber" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('projectRefNumber').hasError('required') && form.get('projectRefNumber').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Project Name</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="projectName" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('projectName').hasError('required') && form.get('projectName').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label>Status</label>
+                        <kendo-switch class="k-switch" class="w-100" [onLabel]="'Yes'" [offLabel]="'No'"
+                            formControlName="isActive"></kendo-switch>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Total Project Budget</label>
+                        <input kendoTextBox type="number" class="w-100" formControlName="totalProjectBudget"
+                            maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('totalProjectBudget').hasError('required') && form.get('totalProjectBudget').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Starting Date</label>
+                        <kendo-datepicker formControlName="startingDate"></kendo-datepicker>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Deadline</label>
+                        <kendo-datepicker formControlName="deadline"></kendo-datepicker>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Completion Date</label>
+                        <kendo-datepicker formControlName="completionDate"></kendo-datepicker>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Department</label>
+                        <kendo-dropdownlist formControlName="departmentID" [defaultItem]="default" [data]="departments"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('departmentID').hasError('required') && form.get('departmentID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Client</label>
+                        <kendo-dropdownlist formControlName="clientID" [defaultItem]="default" [data]="clients"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('clientID').hasError('required') && form.get('clientID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Contract ID</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="contractID" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('contractID').hasError('required') && form.get('contractID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

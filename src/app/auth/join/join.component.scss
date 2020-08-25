@@ -1,0 +1,99 @@
+.login-container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%); /* for IE 9 */
+  -webkit-transform: translate(-50%, -50%); /* for Safari */
+  min-width: 700px;
+}
+.login-logo {
+  background-color: #3f7ad2;
+  color: #fff;
+  padding: 25px;
+}
+
+.box-shadow {
+  box-shadow: 0px 2px 7px #cacaca;
+}
+
+.login-control {
+  background-color: #fff;
+  padding: 25px 50px;
+}
+.login-text {
+  font-weight: 400;
+  font-size: 18px;
+  color: #565656;
+  padding-bottom: 30px;
+  padding-top: 20px;
+}
+.forgot {
+  text-align: center;
+  color: #3f7ad2;
+  font-weight: bold;
+  padding-bottom: 20px;
+}
+
+.selected {
+  background-color: #3f7ad2 !important;
+  color: #fff !important;
+}
+
+.login-btn {
+  padding-bottom: 60px;
+  .btn {
+    min-width: 180px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+  .btn-primary {
+    background-color: #3f7ad2;
+    border-color: #3f7ad2;
+  }
+}
+
+.back-btn {
+  height: 35px;
+  padding-top: 20px;
+  width: 35px;
+  padding: 8px;
+  margin-top: 30px;
+  background-color: #ececec;
+  border-radius: 35px;
+  cursor: pointer;
+  i {
+    color: #000;
+    font-size: 20px;
+    font-weight: bold;
+  }
+}
+
+.btn-role {
+  background-color: #f5f6f8;
+  border: 1px solid #e4e4e4;
+  color: #7b7b7c;
+  font-size: 14px;
+  padding: 10px 25px;
+  font-weight: 500;
+  margin-right: 20px;
+  border-radius: 5px;
+  margin: 10px;
+  text-transform: uppercase;
+}
+.copyright-text {
+  font-size: 12px;
+  color: rgb(167, 167, 167);
+  width: 100%;
+  overflow: hidden;
+  position: absolute;
+  bottom: 50px;
+}
+
+@media only screen and (min-width: 319px) and (max-width: 768px) {
+  .login-container {
+    min-width: 90%;
+    top: 0%;
+    transform: translate(-50%, 0%);
+  }
+}

@@ -1,0 +1,268 @@
+<div class="row mt-3">
+    <div class="col-md-12">
+        <div class="form-group">
+            <kendo-dropdownlist [data]="listItems"></kendo-dropdownlist>
+        </div>
+    </div>
+</div>
+<!-- Master Header Start -->
+<div class="card w-100 mb-3">
+    <div class="card-body px-3 py-2">
+        <div class="row align-items-center">
+            <div class="col-auto mr-auto">
+                <h4 class="mb-0">Design Stages</h4>
+            </div>
+            <div class="col-md-auto col mobile-pr-0">
+                <button type="button" class="btn-white btn-border mr-1"><span class="btn-circle-icon btn-cicle-red"><i class="las la-arrow-left"></i></span>Back</button>
+                <button type="button" class="btn-white btn-border mr-1"><span class="btn-circle-icon btn-cicle-green"><img src="./assets/images/check-small.svg" /></span>Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Master Header End -->
+<div class="row">
+    <div class="col-md-8">
+        <div class="panelbar-wrapper">
+            <kendo-panelbar class="card">
+                <kendo-panelbar-item title="" expanded="true">
+                    <ng-template kendoPanelBarItemTitle>
+                        <input type="checkbox" #preconcept kendoCheckBox checked />
+                        <kendo-label class="k-checkbox-label" [for]="preconcept" text="PRE-CONCEPT">
+                        </kendo-label>
+                    </ng-template>
+                    <ng-template kendoPanelBarContent>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <kendo-label text="Starting Date:" class="date-label">
+                                        <kendo-datepicker placeholder="e.g. 02/26/2020" [format]="'MM-dd-yyyy'">
+                                        </kendo-datepicker>
+                                    </kendo-label>
+                                    <kendo-label text="Ending Date:" class="date-label">
+                                        <kendo-datepicker placeholder="e.g. 02/26/2020" [format]="'MM-dd-yyyy'">
+                                        </kendo-datepicker>
+                                    </kendo-label>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="float-left mt-3 mb-2 text-black">Team</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="checkbox" #emp1 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="emp1"
+                                                    text="Murad Saleh">
+                                                </kendo-label>
+                                                <p><b>Rate/Hr: 000,000.00</b></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="checkbox" #emp2 kendoCheckBox checked />
+                                                <kendo-label class="k-checkbox-label" [for]="emp2"
+                                                    text="Yasmin Shurrab">
+                                                </kendo-label>
+                                            </div>
+                                            <div class="form-group">
+                                                <kendo-label text="Hours" class="hour-label">
+                                                    <input kendoTextBox />
+                                                </kendo-label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="checkbox" #emp3 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="emp3"
+                                                    text="bhargav bhargav">
+                                                </kendo-label>
+                                                <p><b>Rate/Hr: 000,000.00</b></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dashed-border"></div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="float-left mt-3 mb-2 text-black">Deliverables</h5>
+                                        </div>
+                                        <div class="col-md-12 mt-1 deliverables">
+                                            <div class="form-group">
+                                                <input type="checkbox" #dlv1 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="dlv1"
+                                                    text="Bid presentation / Mobilisation">
+                                                </kendo-label>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" #dlv321 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="dlv321"
+                                                    text="Drawings issue Package for coordination: As listed areas within the Scope of Work - Plans – Overall General Arrangement Plans & RCP’s to scale 1:50 /1:100 - Selected Key Sections/Elevations of key areas">
+                                                </kendo-label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </kendo-panelbar-item>
+                <kendo-panelbar-item title="">
+                    <ng-template kendoPanelBarItemTitle>
+                        <input type="checkbox" #concept kendoCheckBox />
+                        <kendo-label class="k-checkbox-label" [for]="concept" text="CONCEPT">
+                        </kendo-label>
+                    </ng-template>
+                    <ng-template kendoPanelBarContent>
+                        <div class="card-body"></div>
+                    </ng-template>
+                </kendo-panelbar-item>
+                <kendo-panelbar-item title="" expanded="true">
+                    <ng-template kendoPanelBarItemTitle>
+                        <input type="checkbox" #sa kendoCheckBox checked />
+                        <kendo-label class="k-checkbox-label" [for]="sa" text="SCHEMATIC A">
+                        </kendo-label>
+                    </ng-template>
+                    <ng-template kendoPanelBarContent>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <kendo-label text="Starting Date:" class="date-label">
+                                        <kendo-datepicker placeholder="e.g. 02/26/2020" [format]="'MM-dd-yyyy'">
+                                        </kendo-datepicker>
+                                    </kendo-label>
+                                    <kendo-label text="Ending Date:" class="date-label">
+                                        <kendo-datepicker placeholder="e.g. 02/26/2020" [format]="'MM-dd-yyyy'">
+                                        </kendo-datepicker>
+                                    </kendo-label>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="float-left mt-3 mb-2 text-black">Team</h5>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="checkbox" #emp4 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="emp4"
+                                                    text="Murad Saleh">
+                                                </kendo-label>
+                                                <p><b>Rate/Hr: 000,000.00</b></p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="checkbox" #emp5 kendoCheckBox checked />
+                                                <kendo-label class="k-checkbox-label" [for]="emp5"
+                                                    text="Yasmin Shurrab">
+                                                </kendo-label>
+                                            </div>
+                                            <div class="form-group">
+                                                <kendo-label text="Hours" class="hour-label">
+                                                    <input kendoTextBox />
+                                                </kendo-label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <input type="checkbox" #emp6 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="emp6"
+                                                    text="bhargav bhargav">
+                                                </kendo-label>
+                                                <p><b>Rate/Hr: 000,000.00</b></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="dashed-border"></div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <h5 class="float-left mt-3 mb-2 text-black">Deliverables</h5>
+                                        </div>
+                                        <div class="col-md-12 mt-1 deliverables">
+                                            <div class="form-group">
+                                                <input type="checkbox" #dlv2 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="dlv2"
+                                                    text="Digital design presentation showing interior design materials and approved design direction">
+                                                </kendo-label>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" #dlv3 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="dlv3"
+                                                    text="Drawings issue Package for coordination: As listed areas within the Scope of Work - Plans – Overall General Arrangement Plans & RCP’s to scale 1:50 /1:100 - Selected Key Sections/Elevations of key areas">
+                                                </kendo-label>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" #dlv4 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="dlv4"
+                                                    text="Further developed High Quality 3D renders to finalise the design">
+                                                </kendo-label>
+                                            </div>
+                                            <div class="form-group">
+                                                <input type="checkbox" #dlv5 kendoCheckBox />
+                                                <kendo-label class="k-checkbox-label" [for]="dlv5"
+                                                    text="SCHEMATIC B *Where MUR deliverables are required Mock-Up Room Design Stage B, for Tender & Construction - Plans – Detailed General Arrangement Plans to scale 1:50 (Fully coordinated FF&E, RCP, Lighting & Small electrical, Flooring, Wall finishes) - Sections/Elevations of key areas Tagged & Dimensioned - Final Door & Internal Window schedules - Detailed Drawing package of all typical details and Joinery items - Detailed Pictorial Specifications schedules inc. Manufacturers information - Pasted Material Sample Boards - Final 3D Visuals">
+                                                </kendo-label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </ng-template>
+                </kendo-panelbar-item>
+            </kendo-panelbar>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card costperemployee">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="float-left mt-3 mb-3 text-black">Cost Per Employee</h5>
+                    </div>
+                </div>
+                <div class="dashed-border"></div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <ul>
+                            <li>
+                                <a href="javascript:void(0);">Murad Saleh ( Hours: 56 )</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">0.00</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Yasmin Shurrab ( Hours: 67 )</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">5,695.00</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Total</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">5,695.00</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Total 20% Extra</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">6,834.00</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Total 40% Extra</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">7,993.00</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Total 60% Extra</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">9,112.00</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Total 80% Extra</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">10,251.00</a>
+                            </li>
+                            <li>
+                                <a href="javascript:void(0);">Total 100% Extra</a>
+                                <a href="javascript:void(0);" class="btn badgebtn btn-primary float-right">11,390.00</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

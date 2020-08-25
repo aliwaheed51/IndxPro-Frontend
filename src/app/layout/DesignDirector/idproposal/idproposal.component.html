@@ -1,0 +1,69 @@
+<div>
+    <master-header title="Role" tableName="SecurityRole" (saveClick)="onSave()" [id]="id" [formGroup]="form"
+        (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label>Company Name</label>
+
+                <kendo-combobox [data]="companies" formControlName="companyId" [valuePrimitive]="true" textField="value"
+                    valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }"
+                    (valueChange)="companychange($event)">
+                </kendo-combobox>
+                <div class="required-text"
+                    *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label>Project Name</label>
+                <kendo-combobox [data]="projectList" formControlName="projectId" [valuePrimitive]="true"
+                    textField="value" valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }">
+                </kendo-combobox>
+
+                <div class="required-text"
+                    *ngIf="form.get('projectId').hasError('required') && form.get('projectId').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="label-primary">Proposal Id</label>
+                <input type="text" class="k-textbox w-100" formControlName="proposalId" maxlength="200" noSpace />
+                <div class="required-text"
+                    *ngIf="form.get('proposalId').hasError('required') && form.get('proposalId').touched">
+                    This field is required!
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+            <div class="form-group col-md-4">
+                <label class="label-primary">Payment Terms</label>
+                <input type="text" class="k-textbox w-100" formControlName="paymentTerms" maxlength="200" noSpace />
+            </div>
+            <div class="form-group col-md-4">
+                <label class="label-primary">Proposal Status</label>
+
+                <kendo-combobox [data]="ProposalStatusType" formControlName="proposalStatus" [valuePrimitive]="true"
+                    textField="value" valueField="id" class="w-100" [popupSettings]="{ width: 'auto' }">
+                </kendo-combobox>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="label-primary">Currency</label>
+                <input type="text" class="k-textbox w-100" formControlName="currency" maxlength="200" noSpace />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4">
+                <label class="label-primary">Proposal Date</label>
+                <kendo-datepicker class="w-100" formControlName="proposalDate" (valueChange)="setValidToDate($event)"></kendo-datepicker>
+            </div>
+            <div class="form-group col-md-4">
+                <label class="label-primary">Proposal Valid Date</label>
+
+                <kendo-datepicker class="w-100"  [min]="TValidTo"  formControlName="proposalValidDate"></kendo-datepicker>
+            </div>
+
+        </div>
+    </form>
+</div>

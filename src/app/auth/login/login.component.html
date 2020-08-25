@@ -1,0 +1,51 @@
+<div class="login-page">
+	<div class="login-box">
+		<div class="logo">
+			<img src="./assets/images/logo-17.svg" />
+		</div>
+		<form role="form" [formGroup]="form">
+			<div class="msg">Welcome Back</div>
+			<p>Sign in to stay updated on your professional world.</p>
+			<div class="row">
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input kendoTextBox class="form-control" placeholder="Email" formControlName="userName" />
+						<div class="required-text"
+							*ngIf="form.get('userName').hasError('required') && form.get('userName').touched">
+							Email is required
+						</div>
+						<div class="required-text"
+							*ngIf="form.get('userName').hasError('email') && form.get('userName').touched">
+							Email is not valid
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input kendoTextBox type="password" class="form-control" placeholder="Password" formControlName="password" />
+						<div class="required-text"
+							*ngIf="form.get('password').hasError('required') && form.get('password').touched">
+							Password is required
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 col-md-6">
+					<button type="button" class="btn btn-primary w-100" [disabled]="!form.valid"
+						(click)="login()">Continue</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<a routerLink="../forgot" class="forgot-password">Forgot Password?</a>
+				</div>
+				<div class="col-md-12">
+					<div class="join-now">
+						New to IndexPro? <a routerLink="../join">Join now</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

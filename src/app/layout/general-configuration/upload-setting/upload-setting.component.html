@@ -1,0 +1,92 @@
+<div class="modal-header">
+    <div class="form-row align-items-center w-100">
+        <div class="col-md-auto col-auto">
+            <h4 class="modal-title">Upload Setting</h4>
+        </div>
+        <div class="col-md-auto ml-auto col">
+            <button class="btn-gray btn-add mr-2" (click)="onSave()" [disabled]="form.invalid || form.pristine">
+                <span class="btn-circle-icon btn-cicle-green">
+                    <img src="./assets/images/check-small.svg" />
+                </span>
+                Save
+            </button>
+            <button type="button" class="btn-white btn-border mr-1" (click)="onReset()">
+                <span class="btn-circle-icon btn-cicle-blue">
+                    <i class="las la-sync-alt"></i>
+                </span>
+                Reset
+            </button>
+            <button class="btn-gray btn-add" (click)="close()">
+                <span class="btn-circle-icon btn-cicle-red"><img src="./assets/images/close-white.svg" /></span>
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Image Path</label>
+                <input kendoTextBox type="text" class="w-100" formControlName="imagePath" maxlength="3000" noSpace />
+                <div class="required-text"
+                    *ngIf="form.get('imagePath').hasError('required') && form.get('imagePath').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg col-md-6">
+                <label class="label-primary">Document Path</label>
+                <input kendoTextBox type="text" class="w-100" formControlName="documentPath" maxlength="3000" noSpace />
+                <div class="required-text"
+                  *ngIf="form.get('documentPath').hasError('required') && form.get('documentPath').touched">
+                   This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Company</label>
+                <kendo-combobox
+                  [data]="companyDataSource"
+                  formControlName="companyId"
+                  [valuePrimitive]="true"
+                  textField="value"
+                  valueField="id"
+                  class="w-100"
+                  [disabled]="id>0"
+                  [popupSettings]="{ width: 'auto' }"
+                >
+                </kendo-combobox>
+                <div class="required-text"
+                  *ngIf="form.get('companyId').hasError('required') && form.get('companyId').touched">
+                   This field is required!
+                </div>
+            </div>
+            
+        </div>
+        <div class="row">
+            <div class="form-group col-lg col-md-6">
+                <label class="label-primary">Image Url</label>
+                <input kendoTextBox type="text" class="w-100" formControlName="imageUrl" maxlength="3000" noSpace />
+                <div class="required-text"
+                  *ngIf="form.get('imageUrl').hasError('required') && form.get('imageUrl').touched">
+                   This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg col-md-6">
+                <label class="label-primary">Document Url</label>
+                <input kendoTextBox type="text" class="w-100" formControlName="documentUrl" maxlength="3000" noSpace />
+                <div class="required-text"
+                  *ngIf="form.get('documentUrl').hasError('required') && form.get('documentUrl').touched">
+                   This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg col-md-6">
+                <label class="label-primary">Data Recycle Days</label>
+                <input kendoTextBox type="text" class="w-100" formControlName="dataRecycleDays" maxlength="3000" noSpace />
+                <div class="required-text"
+                  *ngIf="form.get('dataRecycleDays').hasError('required') && form.get('dataRecycleDays').touched">
+                   This field is required!
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,29 @@
+@import "../../../../assets/scss/colors.scss";
+app-myprojectdeliverable{display:block;margin:10px;}
+.panelbar-wrapper{margin:0 auto;}
+.card{background:#fff;min-height:50px;box-shadow:0 2px 10px rgba(0,0,0,0.2);position:relative;margin-bottom:30px;-webkit-border-radius:2px;-moz-border-radius:2px;-ms-border-radius:2px;border-radius:2px;min-height:0px;}
+.card .card{margin-top:15px;}
+.card-body{font-size:14px;color:#555;padding:15px;}
+.k-panelbar .k-item .k-link{color:$text-primary;background-color:$primary;outline:none;border-bottom:1px solid #eee;}
+.k-panelbar .k-item .k-link.k-header,.k-state-selected{color:$text-primary;background-color:$primary !important;font-weight:400;outline:none;border-bottom:1px solid #eee;}
+.k-panelbar .k-item .k-link.k-state-focused{box-shadow:none;}
+.k-panelbar-expand::before{content:"\e11e";}
+.k-panelbar-collapse::before{content:"\e121";}
+.k-list .k-item .k-link{background-color:$primary !important;}
+.k-list .k-item .k-link.k-header,.k-state-selected{background-color:$primary !important;}
+.date-label{margin-left:10px;}
+.date-label .k-label{margin-right:5px;}
+.hour-label .k-label{margin-right:5px;}
+.hour-label .k-textbox{width:7rem;}
+.dashed-border{border-bottom:1px dashed #ebedf2;}
+.deliverables .k-checkbox-label .k-label{display:inline;margin-right:0px !important;}
+.costperemployee ul{display:flex;flex-direction:column;padding-left:0;margin-bottom:0;}
+.costperemployee ul li{position:relative;display:block;padding:.75rem 0;background-color:#fff;color:$text-primary;}
+.costperemployee ul li:not(:last-child){border-bottom:1px dashed #ebedf2;}
+.costperemployee ul li a{color:$text-primary;display: inline-block;vertical-align: middle;}
+.costperemployee ul li a:first-child{margin-top:5px;max-width: 260px;}
+.badgebtn{color:$text-primary;padding:5px 5px;font-size:.875rem;border-radius:0;box-shadow:0 2px 10px rgba(0,0,0,0.2);border:none;}
+.badgebtn.btn-primary:active:not(:disabled):not(.disabled),.badgebtn.btn-primary:hover:not(:disabled):not(.disabled){background:#00000021;color:$text-primary !important;box-shadow:0 1px 5px rgba(0,0,0,0.3);border:none;}
+.badgebtn:hover{background:#00000021;color:$text-primary !important;box-shadow:0 1px 5px rgba(0,0,0,0.3);border:none;}
+.k-checkbox:checked:focus{border-color:$border-primary;box-shadow:0 0 0 2px rgba(2,81,117,0.3);}
+.k-checkbox:checked{border-color:$border-primary;color:#ffffff;background-color:$text-primary;}

@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+// Login
+.login-page{padding-left:0;max-width:360px;margin:5% auto;overflow-x:hidden;}
+.join-page{margin:2% auto;}
+.login-page .login-box .msg{font-size:25px;line-height:1.33333;font-weight:500;padding:0 0 4px 0;color:#555;text-align:center;}
+.login-page .login-box p{font-size:15px;line-height:1.75;font-weight:400;color:#555;text-align:center;padding-bottom:30px;}
+.login-page .login-box .forgot-password{font-size:20px;display:block;width:100%;text-align:center;color:#4275b1;margin:24px 0 0 0;}
+.login-page .login-box .join-now{font-size:20px;display:block;width:100%;text-align:center;margin:24px 0 0 0;}
+.login-page .login-box .join-now a{color:#4275b1;}
+.login-page .login-box .logo{margin-left:auto;margin-right:auto;position:relative;width:30%;margin-bottom:20px;}
+.customPhoto{display:inline-block;width:32px;height:32px;border-radius:50%;background-size:32px 35px;background-position:center center;vertical-align:middle;line-height:32px;box-shadow:inset 0 0 1px #999,inset 0 0 10px rgba(0,0,0,.2);margin-left:5px;}
+.toast-container .ngx-toastr:hover{box-shadow:0 0 10px #0000007d;opacity:1;cursor:pointer;}
+.toast-error{background-color: #BD362F;}
+.toast-success{background-color:#a8d2ac;}

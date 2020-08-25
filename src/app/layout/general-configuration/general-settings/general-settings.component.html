@@ -1,0 +1,120 @@
+<div class="modal-header">
+    <div class="form-row align-items-center w-100">
+        <div class="col-md-auto col-auto">
+            <h4 class="modal-title">General Setting</h4>
+        </div>
+        <div class="col-md-auto ml-auto col">
+            <button class="btn-gray btn-add mr-2" (click)="onSave()" [disabled]="form.invalid || form.pristine">
+                <span class="btn-circle-icon btn-cicle-green">
+                    <img src="./assets/images/check-small.svg" />
+                </span>
+                Save
+            </button>
+            <button type="button" class="btn-gray btn-add mr-2" (click)="onReset()">
+                <span class="btn-circle-icon btn-cicle-blue">
+                    <i class="las la-sync-alt"></i>
+                </span>
+                Reset
+            </button>
+            <button class="btn-gray btn-add" (click)="close()">
+                <span class="btn-circle-icon btn-cicle-red"><img src="./assets/images/close-white.svg" /></span>
+                Cancel
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="row">
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Date Format</label>
+                <kendo-combobox
+                  [data]="dateFormatDataSource"
+                  formControlName="dateFormat"
+                  class="w-100"
+                  [popupSettings]="{ width: 'auto' }"
+                >
+                </kendo-combobox>
+                <div class="required-text"
+                    *ngIf="form.get('dateFormat').hasError('required') && form.get('dateFormat').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Time Format</label>
+                <kendo-combobox
+                  [data]="timeFormatDataSource"
+                  formControlName="timeFormat"
+                  class="w-100"
+                  [popupSettings]="{ width: 'auto' }"
+                >
+                </kendo-combobox>
+                <div class="required-text"
+                    *ngIf="form.get('timeFormat').hasError('required') && form.get('timeFormat').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Idle </label>
+                <kendo-numerictextbox
+                format="n" 
+                formControlName="idle" 
+                min="1" 
+                class="w-100"
+                >
+                </kendo-numerictextbox>
+                <div class="required-text"
+                    *ngIf="form.get('idle').hasError('required') && form.get('idle').touched">
+                    This field is required!
+                </div>
+            </div>
+            <!-- <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Idle</label>
+                <input kendoTextBox type="text" class="w-100" formControlName="idle" min="1" noSpace />
+                <div class="required-text"
+                    *ngIf="form.get('idle').hasError('required') && form.get('idle').touched">
+                    This field is required!
+                </div>
+            </div> -->
+        </div>
+        <div class="row">
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Time Out </label>
+                <kendo-numerictextbox
+                format="n" 
+                formControlName="timeout" 
+                min="1" 
+                class="w-100"
+                >
+                </kendo-numerictextbox>
+                <div class="required-text"
+                    *ngIf="form.get('timeout').hasError('required') && form.get('timeout').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">Ping </label>
+                <kendo-numerictextbox
+                format="n" 
+                formControlName="ping" 
+                min="1" 
+                class="w-100"
+                >
+                </kendo-numerictextbox>
+                <div class="required-text"
+                    *ngIf="form.get('ping').hasError('required') && form.get('ping').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-lg-4 col-md-6">
+                <label class="label-primary">SignalR Url</label>
+                <input kendoTextBox type="text" class="w-100" formControlName="signalrUrl"  maxlength="50" noSpace />
+                <div class="required-text"
+                    *ngIf="form.get('signalrUrl').hasError('required') && form.get('signalrUrl').touched">
+                    This field is required!
+                </div>
+            </div>
+        </div>
+       
+    </form>
+</div>

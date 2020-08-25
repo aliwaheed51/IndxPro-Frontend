@@ -1,0 +1,32 @@
+<div>
+    <master-header title="Finish Catergories" tableName="finishCatergories" (saveClick)="onSave()" [id]="id"
+        [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Finish Type</label>
+                        <kendo-dropdownlist formControlName="finishTypeID" [defaultItem]="default" [data]="finishTypes"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('finishTypeID').hasError('required') && form.get('finishTypeID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Finish Catergories</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="finishCatergories"
+                            maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('finishCatergories').hasError('required') && form.get('finishCatergories').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

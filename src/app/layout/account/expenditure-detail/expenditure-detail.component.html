@@ -1,0 +1,217 @@
+<style>
+    .radio-wrapper {
+        float: left;
+        clear: none;
+        width: 100%;
+    }
+
+    label {
+        float: left;
+        clear: none;
+        display: block;
+        padding: 0px 1em 0px 8px;
+    }
+
+    input[type=radio],
+    input.radio {
+        float: left;
+        clear: none;
+        margin: 1px 0 0 -4px;
+    }
+</style>
+<div>
+    <master-header title="Expenditure Type" tableName="expenditureType" (saveClick)="onSave()" [id]="id"
+        [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Company Name</label>
+                        <kendo-dropdownlist formControlName="companyID" [defaultItem]="default" [data]="companies"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required
+                            (valueChange)="handleCompanyChange($event)">
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('companyID').hasError('required') && form.get('companyID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Payment Category</label>
+                        <span class="radio-wrapper">
+                            <label class="k-label" [for]="Paid">Paid</label>
+                            <input type="radio" name="paymentCategory" formControlName="paymentCategory" value="Paid"
+                                #Paid kendoRadioButton />
+
+                            <label class="k-label" [for]="NotPaid">Not Paid</label>
+                            <input type="radio" name="paymentCategory" formControlName="paymentCategory"
+                                value="Not Paid" #NotPaid kendoRadioButton />
+
+                            <label class="k-label" [for]="Forcast">Forcast</label>
+                            <input type="radio" name="paymentCategory" formControlName="paymentCategory" value="Forcast"
+                                #Forcast kendoRadioButton />
+                        </span>
+                        <div class="required-text"
+                            *ngIf="form.get('paymentCategory').hasError('required')  && form.get('paymentCategory').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Expense Type</label>
+                        <span class="radio-wrapper">
+                            <label class="k-label" [for]="Nonreimbursable">Nonreimbursable</label>
+                            <input type="radio" name="expenseType" formControlName="expenseType" value="Nonreimbursable"
+                                #Nonreimbursable kendoRadioButton />
+
+                            <label class="k-label" [for]="Reimbursable">Reimbursable</label>
+                            <input type="radio" name="expenseType" formControlName="expenseType" value="Reimbursable"
+                                #Reimbursable kendoRadioButton />
+
+                            <label class="k-label" [for]="Securitydeposit ">Security deposit </label>
+                            <input type="radio" name="expenseType" formControlName="expenseType"
+                                value="Security deposit " #Securitydeposit kendoRadioButton />
+                        </span>
+                        <div class="required-text"
+                            *ngIf="form.get('expenseType').hasError('required') && form.get('expenseType').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Bill due</label>
+                        <kendo-datepicker formControlName="paid"></kendo-datepicker>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Beneficiary Category</label>
+                        <kendo-dropdownlist formControlName="beneficiaryCategoryID" [defaultItem]="default"
+                            [data]="beneficiaryCategories" [textField]="'value'" [valueField]="'id'"
+                            [valuePrimitive]="true" required (valueChange)="handleBeneficiaryCategoryChange($event)">
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('beneficiaryCategoryID').hasError('required') && form.get('beneficiaryCategoryID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Expenditure Type</label>
+                        <kendo-dropdownlist formControlName="expenditureTypeID" [defaultItem]="default"
+                            [data]="expenditureTypesCurrent" [textField]="'value'" [valueField]="'id'"
+                            [valuePrimitive]="true" required (valueChange)="handleExpenditureTypeChange($event)"
+                            [disabled]="isDisabledExpenditureType">
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('expenditureTypeID').hasError('required') && form.get('expenditureTypeID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Beneficiary</label>
+                        <kendo-dropdownlist formControlName="beneficiaryNameID" [defaultItem]="default"
+                            [data]="beneficiaryNames" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true"
+                            required [disabled]="isDisabledBeneficiaryName">
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('beneficiaryNameID').hasError('required') && form.get('beneficiaryNameID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Total Invoice Amount Paid</label>
+                        <input kendoTextBox type="number" class="w-100" formControlName="amount" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('amount').hasError('required') && form.get('amount').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Vat</label>
+                        <input kendoTextBox type="number" class="w-100" formControlName="vat" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('vat').hasError('required') && form.get('vat').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label>Currency</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="currency" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('currency').hasError('required') && form.get('currency').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Paid By</label>
+                        <kendo-dropdownlist formControlName="paidBy" [defaultItem]="default" [data]="paidBy"
+                            [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true">
+                        </kendo-dropdownlist>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Payment Ref Number</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="paymentRefNumber" maxlength="200"
+                            noSpace />
+                    </div>
+
+                </div>
+
+
+                <div class="row">
+
+                    <div class="form-group col-md-4">
+                        <label>Bank Account</label>
+                        <kendo-dropdownlist formControlName="companyBankAccDetailID" [defaultItem]="default"
+                            [data]="companyBankAccounts" [textField]="'value'" [valueField]="'id'"
+                            [valuePrimitive]="true">
+                        </kendo-dropdownlist>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Invoice No</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="invoiceNumber" maxlength="200"
+                            noSpace />
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Invoice Date</label>
+                        <kendo-datepicker formControlName="invoiceDate"></kendo-datepicker>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Note</label>
+                        <textarea kendoTextArea formControlName="note"></textarea>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </form>
+</div>

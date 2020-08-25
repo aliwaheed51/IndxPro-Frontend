@@ -1,0 +1,88 @@
+<div class="login-page join-page">
+	<div class="login-box">
+		<div class="logo">
+			<img src="./assets/images/logo-17.svg" />
+		</div>
+		<form role="form" [formGroup]="form">
+			<div class="msg">Welcome</div>
+			<p>Sign up to stay updated on your professional world.</p>
+			<div class="row">
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input kendoTextBox class="form-control" placeholder="First Name" formControlName="firstName" />
+						<div class="required-text"
+							*ngIf="form.get('firstName').hasError('required') && form.get('firstName').touched">
+							First Name is required
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input kendoTextBox class="form-control" placeholder="Last Name" formControlName="lastName" />
+						<div class="required-text"
+							*ngIf="form.get('lastName').hasError('required') && form.get('lastName').touched">
+							Last Name is required
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input kendoTextBox class="form-control" placeholder="Mobile" formControlName="mobile" />
+						<div class="required-text"
+							*ngIf="form.get('mobile').hasError('required') && form.get('mobile').touched">
+							Mobile number is required
+						</div>
+						<div class="required-text"
+							*ngIf="form.get('mobile').hasError('pattern') && form.get('mobile').touched">
+							Mobile number is not valid
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input kendoTextBox class="form-control" placeholder="User Name" formControlName="userName" />
+						<div class="required-text"
+							*ngIf="form.get('userName').hasError('required') && form.get('userName').touched">
+							User name is required
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input kendoTextBox class="form-control" placeholder="Email" formControlName="email" />
+						<div class="required-text"
+							*ngIf="form.get('email').hasError('required') && form.get('email').touched">
+							Email is required
+						</div>
+						<div class="required-text"
+							*ngIf="form.get('email').hasError('email') && form.get('email').touched">
+							Email is not valid
+						</div>
+					</div>
+				</div>
+				<div class="col-md-12 col-md-6">
+					<div class="form-group">
+						<input type="password" class="form-control" placeholder="Password" formControlName="password" />
+						<div class="required-text"
+							*ngIf="form.get('password').hasError('required') && form.get('password').touched">
+							Password is required
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12 col-md-6">
+					<button type="button" class="btn btn-primary w-100" [disabled]="!form.valid"
+						(click)="join()">Continue</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<div class="join-now">
+						Already member? <a routerLink="../login">Login</a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>

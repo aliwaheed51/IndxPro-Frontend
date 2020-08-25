@@ -1,0 +1,53 @@
+<div *ngIf="!showDetails">
+    <div class="stepper-content" *ngIf="!showDetails">
+        <button type="button" class="btn-theme mr-1 mb-3" (click)="addClick()">
+            <span class="btn-circle-icon btn-circle-theme">
+                <i class="fa fa-plus"></i>
+            </span>
+            Add New
+        </button>
+        <kendo-grid [data]="gridData" [pageSize]="20" [sortable]="true" [pageable]="true">
+            <kendo-grid-command-column title="Action" width="80">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span class="badge-grid-action badge-blue mr-2" (click)="editClick(dataItem.id)">
+                        <i class="las la-edit text-blue grd-edit-del"></i>
+                    </span>
+                    <span class="badge-grid-action badge-red" (click)="onDelete(dataItem.id)">
+                        <i class="las la-trash text-red grd-edit-del"></i>
+                    </span>
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column width="200" title="Full Name">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <img height="70" width="70" class="customPhoto mr-3" src="{{dataItem.logo}}" />
+                    {{ dataItem.companyName }}  
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="isActive" width="80" title="Is Active">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <kendo-switch class="k-switch w-100" [readonly]="true" 
+                        [onLabel]="'Yes'" [(ngModel)]="dataItem.isActive" [offLabel]="'No'"></kendo-switch>
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column field="officeNoAndBuilding" width="200" title="Office No And Building">
+            </kendo-grid-column>
+            <kendo-grid-column field="city" width="140" title="City">
+            </kendo-grid-column>
+            <kendo-grid-column field="country" width="140" title="Country">
+            </kendo-grid-column>
+            <kendo-grid-column field="email" width="200" title="Email">
+            </kendo-grid-column>
+            <kendo-grid-column field="phone" width="140" title="Phone">
+            </kendo-grid-column>
+            <kendo-grid-column field="mobile" width="140" title="Mobile">
+            </kendo-grid-column>
+            <kendo-grid-column field="contactTitle" width="50" title="Title">
+            </kendo-grid-column>
+            <kendo-grid-column field="contactName" width="200" title="Contact Name">
+            </kendo-grid-column>
+        </kendo-grid>
+    </div>
+</div>
+
+<app-company *ngIf="showDetails" (backClick)="onBack()" [data]='data'>
+</app-company>

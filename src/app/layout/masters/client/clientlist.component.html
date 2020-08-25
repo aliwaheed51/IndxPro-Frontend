@@ -1,0 +1,102 @@
+<div *ngIf="!showDetails">
+    <button type="button" class="btn-theme mr-1 mb-3" (click)="addClick()">
+        <span class="btn-circle-icon btn-circle-theme">
+            <i class="fa fa-plus"></i>
+        </span>
+        Add New
+    </button>
+    <div class="stepper-content" *ngIf="!showDetails">
+        <kendo-grid [groupable]="true" [reorderable]="true" [resizable]="true" [columnMenu]="{ filter: true }"
+            [kendoGridBinding]="gridView" [pageSize]="20" [sortable]="true" [pageable]="true">
+            <ng-template kendoGridToolbarTemplate>
+                <input placeholder="Search in all columns..." kendoTextBox (input)="onFilter($event.target.value)" />
+                <button kendoGridExcelCommand type="button" icon="file-excel" style="float:right;">Export to
+                    Excel</button>
+                <button kendoGridPDFCommand icon="file-pdf" style="float:right;">Export to PDF</button>
+            </ng-template>
+            <kendo-grid-command-column title="Action" width="100">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <span class="badge-grid-action badge-blue mr-2" (click)="editClick(dataItem.id)">
+                        <i class="las la-edit text-blue grd-edit-del"></i>
+                    </span>
+                    <span class="badge-grid-action badge-red" (click)="onDelete(dataItem.id)">
+                        <i class="las la-trash text-red grd-edit-del"></i>
+                    </span>
+                </ng-template>
+            </kendo-grid-command-column>
+            <kendo-grid-column width="200" title="Full Name">
+                <ng-template kendoGridCellTemplate let-dataItem>
+                    <img height="70" width="70" class="customPhoto mr-3" src="{{dataItem.logo}}" />
+                    {{ dataItem.firstName }} {{ dataItem.lastName }}
+                </ng-template>
+            </kendo-grid-column>
+            <kendo-grid-column [columnMenu]="false" width="200"  *ngIf="isSuperAdmin" field="companyName" title="Company Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="clientCompanyName" width="200" title="Client Company Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="officeNoAndBuilding" width="80" title="Office Number & Building Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="city" width="200" title="City">
+            </kendo-grid-column>
+            <kendo-grid-column field="country" width="200" title="Country">
+            </kendo-grid-column>
+            <kendo-grid-column field="telephoneNumber" width="200" title="Telephone Number">
+            </kendo-grid-column>
+            <kendo-grid-column field="email" width="200" title="Email">
+            </kendo-grid-column>
+            <kendo-grid-column field="contactName" width="200" title="Contact Name">
+            </kendo-grid-column>
+            <kendo-grid-column field="contactTitle" width="200" title="Contact Title">
+            </kendo-grid-column>
+            <kendo-grid-column field="contactMobile" width="200" title="Contact Mobile Number">
+            </kendo-grid-column>
+            <kendo-grid-column field="clientBankDetail" width="200" title="Client Bank account details">
+            </kendo-grid-column>
+            <kendo-grid-pdf fileName="Client.pdf" paperSize="A4" [scale]="0.8" [repeatHeaders]="true">
+                <kendo-grid-pdf-margin top="2cm" left="1cm" right="1cm" bottom="2cm"></kendo-grid-pdf-margin>
+                <ng-template kendoGridPDFTemplate let-pageNum="pageNum" let-totalPages="totalPages">
+                    <div class="page-template">
+                        <div class="header">
+                            <div style="float: right"> Client List </div>
+                            Index Procurement
+                        </div>
+                        <div class="footer">
+                            Page {{ pageNum }} of {{ totalPages }}
+                        </div>
+                    </div>
+                </ng-template>
+                <kendo-grid-column [columnMenu]="false" title="Full Name">
+                    <ng-template kendoGridCellTemplate let-dataItem>
+                        {{ dataItem.firstName }} {{ dataItem.lastName }}
+                    </ng-template>
+                </kendo-grid-column>
+                <kendo-grid-column [columnMenu]="false" width="200"  *ngIf="isSuperAdmin" field="companyName" title="Company Name">
+                </kendo-grid-column>
+                <kendo-grid-column field="clientCompanyName" [columnMenu]="false" title="Client Company Name">
+                </kendo-grid-column>
+                <kendo-grid-column field="officeNoAndBuilding" [columnMenu]="false" title="Office Number & Building Name">
+                </kendo-grid-column>
+                <kendo-grid-column field="city" [columnMenu]="false" title="City">
+                </kendo-grid-column>
+                <kendo-grid-column field="country" [columnMenu]="false" title="Country">
+                </kendo-grid-column>
+                <kendo-grid-column field="telephoneNumber" [columnMenu]="false" title="Telephone Number">
+                </kendo-grid-column>
+                <kendo-grid-column field="email" [columnMenu]="false" title="Email">
+                </kendo-grid-column>
+                <kendo-grid-column field="contactName" [columnMenu]="false" title="Contact Name">
+                </kendo-grid-column>
+                <kendo-grid-column field="contactTitle" [columnMenu]="false" title="Contact Title">
+                </kendo-grid-column>
+                <kendo-grid-column field="contactMobile" [columnMenu]="false" title="Contact Mobile Number">
+                </kendo-grid-column>
+                <kendo-grid-column field="clientBankDetail" [columnMenu]="false" title="Client Bank account details">
+                </kendo-grid-column>
+               
+            </kendo-grid-pdf>
+            <kendo-grid-excel fileName="Client.xlsx"></kendo-grid-excel>
+        </kendo-grid>
+    </div>
+</div>
+<app-client *ngIf="showDetails" (backClick)="onBack()" [data]='data'>
+</app-client>

@@ -1,0 +1,100 @@
+<div>
+    <master-header title="Company" tableName="company" (saveClick)="onSave()" [id]="id" [formGroup]="form"
+        (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Company Name</label>
+                        <kendo-dropdownlist formControlName="companyID" [defaultItem]="defaultCompany"
+                            [data]="companies" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text"
+                            *ngIf="form.get('companyID').hasError('required') && form.get('companyID').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Bank Name</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="bankName" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('bankName').hasError('required') && form.get('bankName').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Bank Branch</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="bankBranch" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('bankBranch').hasError('required') && form.get('bankBranch').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Swift Code</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="swiftCode" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('swiftCode').hasError('required') && form.get('swiftCode').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Account Name</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="accountName" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('accountName').hasError('required') && form.get('accountName').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Account No</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="accountNumber" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('accountNumber').hasError('required') && form.get('accountNumber').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>IBAN</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="iban" maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('iban').hasError('required') && form.get('iban').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Account Currency</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="accCurrency" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('accCurrency').hasError('required') && form.get('accCurrency').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </form>
+</div>

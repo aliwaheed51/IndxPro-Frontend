@@ -1,0 +1,213 @@
+<div class="modal-header">
+    <div class="form-row align-items-center w-100">
+        <div class="col-md-auto col-auto">
+            <h4 class="modal-title">Security Role & Role Permissions</h4>
+        </div>
+        <div class="col-md-auto ml-auto col">
+
+            <button class="btn-gray btn-add" (click)="close()">
+                <span class="btn-circle-icon btn-cicle-red"><img src="../assets/images/close-white.svg" /></span>
+                Close
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal-body">
+    <form [formGroup]="form">
+        <div class="form-row">
+            <div class="form-group col-md-3">
+                <label class="label-primary">Role Name</label>
+                <input kendoTextBox type="text" [disableControl]="disableTextbox" class="w-100"
+                    formControlName="roleName" maxlength="100" noSpace />
+                <div class="required-text"
+                    *ngIf="form.get('roleName').hasError('required') && form.get('roleName').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <label class="label-primary">Role Short Name</label>
+                <input kendoTextBox type="text" [disableControl]="disableTextbox" class="w-100"
+                    formControlName="roleShortName" maxlength="100" noSpace />
+                <div class="required-text"
+                    *ngIf="form.get('roleShortName').hasError('required') && form.get('roleShortName').touched">
+                    This field is required!
+                </div>
+            </div>
+            <div class="col-md-auto col no-lbl-check">
+                <button class="btn-gray btn-add mr-2" (click)="onSave()" [hidden]="hideSave"
+                    [disabled]="form.invalid || form.pristine">
+                    <span class="btn-circle-icon btn-cicle-green">
+                        <img src="../assets/images/check-small.svg" />
+                    </span>
+                    Save
+                </button>
+            </div>
+            <div class="col-md-auto col no-lbl-check">
+                <button type="button" class="btn-white btn-border mr-1" (click)="onReset()" [hidden]="disableReset">
+                    <span class="btn-circle-icon btn-cicle-blue">
+                        <i class="las la-sync-alt"></i>
+                    </span>
+                    Reset
+                </button>
+            </div>
+
+            <div class="col-md-auto col no-lbl-check">
+                <button class="btn-gray btn-add mr-2" (click)="onSaveRolePermission()" [hidden]="disableRolePermission"
+                [disabled]="disableUpdate">
+                    <span class="btn-circle-icon btn-cicle-green">
+                        <img src="../assets/images/check-small.svg" />
+                    </span>
+                    Update Role Permission
+                </button>
+            </div>
+            <div class="col-md-auto col no-lbl-check">
+                <button class="btn-gray btn-add mr-2" (click)="onPermission()" [hidden]="hideAddRole">
+                    <span class="btn-circle-icon btn-cicle-green">
+                        <img src="./assets/images/add.svg" />
+                    </span>
+                    Add New
+                </button>
+            </div>
+
+        </div>
+    </form>
+    <div class="form-row role-mgmt">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header bg-primary">
+                    {{selectedRole?.roleName}} Permissions
+                </div>
+                <div class="card-body">
+                    <kendo-treeview [nodes]="permissions" textField="screenName" kendoTreeViewExpandable
+                        kendoTreeViewFlatDataBinding idField="appScreenId" parentIdField="parentAppScreenId">
+                        <ng-template kendoTreeViewNodeTemplate let-dataItem>
+                            <table class="w-100 group-right-main line-awe-icons">
+                                <tr>
+                                    <td class="left-td" [ngClass]="{'font-weight-bold':!dataItem.parentAppScreenId}"
+                                        valign="middle">{{dataItem.screenName}}</td>
+                                    <td class="right-td" valign="middle">
+                                        <div class="form-row align-items-center">
+                                            <div class="col-md-auto">
+                                                <input type="checkbox" [(ngModel)]="dataItem.isAll"
+                                                    (ngModelChange)="chkChecked(dataItem,0)" />
+                                            </div>
+                                            <div class="col-md-auto" [hidden]="!dataItem.parentAppScreenId">
+                                                <i class="fa fa-list-alt text-blue rights-icons float-left"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md" [hidden]="dataItem.parentAppScreenId">
+                                                <div>
+                                                    All
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="right-td" valign="middle">
+                                        <div class="form-row align-items-center">
+                                            
+                                            <div class="col-md-auto" [hidden]="!dataItem.canAdd">
+                                                <input type="checkbox" [(ngModel)]="dataItem.isAdd"
+                                                    (ngModelChange)="chkChecked(dataItem,1)" />
+                                            </div>
+                                            <div class="col-md-auto"
+                                                [hidden]="!dataItem.canAdd || !dataItem.parentAppScreenId">
+                                                <i class="fa fa-plus text-blue rights-icons float-left"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md"
+                                                [hidden]="!dataItem.canAdd || dataItem.parentAppScreenId">
+                                                <div>Add</div>
+                                                <div [hidden]="dataItem.canAdd"> NA</div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="right-td" valign="middle">
+                                        <div class="form-row align-items-center">
+                                            <div class="col-md-auto" [hidden]="!dataItem.canEdit">
+                                                <input type="checkbox" [(ngModel)]="dataItem.isEdit"
+                                                    (ngModelChange)="chkChecked(dataItem,2)" />
+                                            </div>
+                                            <div class="col-md-auto"
+                                                [hidden]="!dataItem.canEdit || !dataItem.parentAppScreenId">
+                                                <i class="fa fa-pencil-square text-blue rights-icons float-left"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md"
+                                                [hidden]="!dataItem.canEdit || dataItem.parentAppScreenId">
+                                                <div>Edit
+                                                </div>
+                                                <div [hidden]="dataItem.canEdit"> NA
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="right-td" valign="middle">
+                                        <div class="form-row align-items-center">
+                                            <div class="col-md-auto" [hidden]="!dataItem.canDelete">
+                                                <input type="checkbox" [(ngModel)]="dataItem.isDelete"
+                                                    (ngModelChange)="chkChecked(dataItem,3)" />
+                                            </div>
+                                            <div class="col-md-auto"
+                                                [hidden]="!dataItem.canDelete || !dataItem.parentAppScreenId">
+                                                <i class="fa fa-trash-o text-red rights-icons float-left"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md"
+                                                [hidden]="!dataItem.canDelete || dataItem.parentAppScreenId">
+                                                <div>Delete
+                                                </div>
+                                                <div [hidden]="dataItem.canDelete"> NA
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="right-td" valign="middle">
+                                        <div class="form-row align-items-center">
+                                            
+                                            <div class="col-md-auto" [hidden]="!dataItem.canView">
+                                                <input type="checkbox" [(ngModel)]="dataItem.isView"
+                                                    (ngModelChange)="chkChecked(dataItem,4)" />
+                                            </div>
+                                            <div class="col-md-auto"
+                                                [hidden]="!dataItem.canView || !dataItem.parentAppScreenId">
+                                                <i class="fa fa-eye text-blue rights-icons float-left"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md"
+                                                [hidden]="!dataItem.canView || dataItem.parentAppScreenId">
+                                                <div>View
+                                                </div>
+                                                <div [hidden]="dataItem.canView"> NA
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    <td class="right-td" valign="middle">
+                                        <div class="form-row align-items-center">
+                                            <div class="col-md-auto" [hidden]="!dataItem.canExport">
+                                                <input type="checkbox" [(ngModel)]="dataItem.isExport"
+                                                    (ngModelChange)="chkChecked(dataItem,5)" />
+                                            </div>
+                                            <div class="col-md-auto"
+                                                [hidden]="!dataItem.canExport || !dataItem.parentAppScreenId">
+                                                <i class="fa fa-file-pdf-o text-blue rights-icons float-left"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                            <div class="col-md"
+                                                [hidden]="!dataItem.canExport || dataItem.parentAppScreenId">
+                                                <div>Export
+                                                </div>
+                                                <div [hidden]="dataItem.canExport"> NA
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </ng-template>
+                    </kendo-treeview>
+                </div>
+            </div>
+        </div>
+    </div>

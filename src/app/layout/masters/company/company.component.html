@@ -1,0 +1,89 @@
+<div>
+    <master-header title="Company" tableName="company" (saveClick)="onSave()" [id]="id" [formGroup]="form"
+        (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-9">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Company Name</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="companyName" maxlength="200"
+                            noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('companyName').hasError('required') && form.get('companyName').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Office No And Building</label>
+                        <textarea kendoTextArea class="w-100" formControlName="officeNoAndBuilding"></textarea>
+                        <div class="required-text"
+                            *ngIf="form.get('officeNoAndBuilding').hasError('required') && form.get('officeNoAndBuilding').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>City</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="city" maxlength="200" noSpace />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Country</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="country" maxlength="200"
+                            noSpace />
+                    </div>
+                   
+                    <div class="form-group col-md-4">
+                        <label>Mobile</label>
+                        <kendo-maskedtextbox name="masked" [maskOnFocus]="true" [mask]="mask" formControlName="mobile">
+                        </kendo-maskedtextbox>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Phone</label>
+                        <kendo-maskedtextbox name="masked" [maskOnFocus]="true" [mask]="mask" formControlName="phone">
+                        </kendo-maskedtextbox>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Email Address</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="email" maxlength="200" noSpace />
+                        <div class="required-text"
+                            *ngIf="form.get('email').hasError('required') && form.get('email').touched">
+                            This field is required!
+                        </div>
+                        <div class="required-text" *ngIf="form.get('email').hasError('email')">
+                            This field is not valid value!
+                        </div>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <label>Contact Name</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="contactName" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>contact Title</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="contactTitle" />
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label>Is Active ?</label>
+                        <kendo-switch class="k-switch  w-100" [onLabel]="'Yes'" [offLabel]="'No'"
+                            formControlName="isActive"></kendo-switch>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-auto">
+                <div class="user-pic-control mb-3">
+                    <div class="snapshot">
+                        <img class="avtar" [src]="profilePicPath" class="image vol-picture">
+                    </div>
+                </div>
+                <input id="fileInput" type="file" (change)="fileChange($event.target.files)" onclick="this.value = null"
+                    accept="image/*" />
+            </div>
+        </div>
+    </form>
+</div>
