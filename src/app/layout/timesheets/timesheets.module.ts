@@ -9,9 +9,10 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TimesheetListComponent } from './timesheet-list/timesheet-list.component';
+import { TimesheetComponent } from './timesheet/timesheet.component';
 
 @NgModule({
-  declarations: [TimesheetListComponent],
+  declarations: [TimesheetListComponent, TimesheetComponent],
   imports: [
     CommonModule,
     CommonModule,
