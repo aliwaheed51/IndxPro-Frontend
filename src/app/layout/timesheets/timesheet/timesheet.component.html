@@ -1,1 +1,98 @@
-<p>timesheet works!</p>
+<div>
+    <master-header title="Finish Catergories" tableName="finishCatergories" (saveClick)="onSave()" [id]="id" [formGroup]="form" (backClick)="backClick.emit()" (resetClick)="onReset()" [screenCode]="1"></master-header>
+    <form class="k-form" [formGroup]="form">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="form-group col-md-4">
+                        <label>Company</label>
+                        <kendo-dropdownlist formControlName="companiesDD" [defaultItem]="default" [data]="companies" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('companiesDD').hasError('required') && form.get('companiesDD').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Employee</label>
+                        <input kendoTextBox type="text" class="w-100" formControlName="employee" maxlength="200" noSpace />
+                        <div class="required-text" *ngIf="form.get('employee').hasError('required') && form.get('employee').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Project</label>
+                        <kendo-dropdownlist formControlName="projectsDD" [defaultItem]="default" [data]="projects" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('projectsDD').hasError('required') && form.get('projectsDD').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Project Area</label>
+                        <kendo-dropdownlist formControlName="projectAreasDD" [defaultItem]="default" [data]="projectAreas" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('projectAreasDD').hasError('required') && form.get('projectAreasDD').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Design Stages</label>
+                        <kendo-dropdownlist formControlName="designStagesDD" [defaultItem]="default" [data]="designStages" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('designStagesDD').hasError('required') && form.get('designStagesDD').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Deliverables</label>
+                        <kendo-dropdownlist formControlName="deliverablesDD" [defaultItem]="default" [data]="deliverables" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('deliverablesDD').hasError('required') && form.get('deliverablesDD').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Sub-Deliverables</label>
+                        <kendo-dropdownlist formControlName="subDeliverablesDD" [defaultItem]="default" [data]="subDeliverables" [textField]="'value'" [valueField]="'id'" [valuePrimitive]="true" required>
+                        </kendo-dropdownlist>
+                        <div class="required-text" *ngIf="form.get('subDeliverablesDD').hasError('required') && form.get('subDeliverablesDD').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Remarks</label>
+                        <textarea kendoTextBox type="text" class="w-100" formControlName="remarks" maxlength="500"> </textarea>
+                        <div class="required-text" *ngIf="form.get('remarks').hasError('required') && form.get('remarks').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Check-In</label>
+                        <kendo-datepicker [(value)]="checkinValue" placeholder="Type your check in time..." class="w-100" formControlName="checkin">
+                        </kendo-datepicker>
+                        <div class="required-text" *ngIf="form.get('checkin').hasError('required') && form.get('checkin').touched">
+                            This field is required!
+                        </div>
+                    </div>
+
+                    <div class="form-group col-md-4">
+                        <label>Check-Out</label>
+                        <kendo-datepicker [(value)]="checkoutValue" placeholder="Type your check out time..." class="w-100" formControlName="checkout">
+                        </kendo-datepicker>
+                        <div class="required-text" *ngIf="form.get('checkout').hasError('required') && form.get('checkout').touched">
+                            This field is required!
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

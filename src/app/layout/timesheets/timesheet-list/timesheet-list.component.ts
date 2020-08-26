@@ -5,7 +5,11 @@ import { TimeSheetService } from '../timesheet.service';
 import { UtilityService } from 'src/app/core/services/utility.service';
 import { TimeSheetModel } from '../timesheet.model';
 import { DataBindingDirective } from '@progress/kendo-angular-grid';
-import { process, GroupDescriptor } from '@progress/kendo-data-query';
+import {
+  process,
+  GroupDescriptor,
+  DataResult,
+} from '@progress/kendo-data-query';
 
 @Component({
   selector: 'app-timesheet-list',
@@ -15,9 +19,9 @@ import { process, GroupDescriptor } from '@progress/kendo-data-query';
 export class TimesheetListComponent extends MasterPage<TimeSheetModel>
   implements OnInit {
   public groups: GroupDescriptor[] = [
-    { field: 'specificationTypeName' },
-    { field: 'itemType' },
-    { field: 'itemCategoryName' },
+    // { field: 'company' },
+    // { field: 'employee' },
+    // { field: 'project' },
   ];
   constructor(
     public service: TimeSheetService,
@@ -27,6 +31,7 @@ export class TimesheetListComponent extends MasterPage<TimeSheetModel>
     super(service);
   }
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
+
   public gridView: any[];
   gridData: TimeSheetModel[];
   data: any;
@@ -35,17 +40,7 @@ export class TimesheetListComponent extends MasterPage<TimeSheetModel>
   }
 
   GetData() {
-    // this.service.Get().subscribe((result) => {
-    //   if (result) {
-    //     this.gridData = result;
-    //     for (const item of this.gridData) {
-    //       item.specificationTypeName =
-    //         item.specificationTypes.specificationName;
-    //     }
-    //      this.gridView= this.gridData;
-    //   }
-    // });
-    //this.gridData = this.service.GetStaticData();
+    this.gridData = this.service.GetStaticData();
     this.gridView = this.gridData;
   }
 
@@ -55,12 +50,7 @@ export class TimesheetListComponent extends MasterPage<TimeSheetModel>
   }
 
   editClick(id: any) {
-    // this.id = id;
-    // this.service.getOneById(this.id).subscribe((data) => {
-    //   this.showDetails = true;
-    //   this.data = data;
-    // });
-    //this.data = this.service.GetStaticDataById(id);
+    this.data = this.service.GetDataById(id);
     this.showDetails = true;
   }
 
@@ -70,16 +60,6 @@ export class TimesheetListComponent extends MasterPage<TimeSheetModel>
   }
 
   onDelete(id: number) {
-    //this.utils.toast.recordDeleted();
-    //this.service.delete(id).subscribe(
-    //   () => {
-    //     this.utils.toast.recordDeleted();
-    //     this.GetData();
-    //   },
-    //   (failed) => {
-    //     this.utils.toast.error(failed.error.message[0], 'Error');
-    //   }
-    // );
     //this.service.DeleteStaticDataById(id);
     this.utils.toast.recordDeleted();
     this.GetData();
@@ -91,22 +71,52 @@ export class TimesheetListComponent extends MasterPage<TimeSheetModel>
         logic: 'or',
         filters: [
           {
-            field: 'specificationTypeName',
+            field: 'company',
             operator: 'contains',
             value: inputValue,
           },
           {
-            field: 'itemType',
+            field: 'employee',
             operator: 'contains',
             value: inputValue,
           },
           {
-            field: 'itemCatogories',
+            field: 'project',
             operator: 'contains',
             value: inputValue,
           },
           {
-            field: 'itemDescription',
+            field: 'projectArea',
+            operator: 'contains',
+            value: inputValue,
+          },
+          {
+            field: 'designStages',
+            operator: 'contains',
+            value: inputValue,
+          },
+          {
+            field: 'deliverables',
+            operator: 'contains',
+            value: inputValue,
+          },
+          {
+            field: 'subDeliverables',
+            operator: 'contains',
+            value: inputValue,
+          },
+          {
+            field: 'remarks',
+            operator: 'contains',
+            value: inputValue,
+          },
+          {
+            field: 'checkin',
+            operator: 'contains',
+            value: inputValue,
+          },
+          {
+            field: 'checkout',
             operator: 'contains',
             value: inputValue,
           },

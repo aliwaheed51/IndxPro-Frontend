@@ -48,6 +48,7 @@
     "@progress/kendo-theme-default": "^4.21.0",
     "angular-mat-datepicker": "0.0.2",
     "bootstrap": "^4.4.1",
+    "dateformat": "^3.0.3",
     "font-awesome": "^4.7.0",
     "html2canvas": "^1.0.0-rc.5",
     "jquery": "^3.5.0",
