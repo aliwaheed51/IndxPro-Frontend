@@ -10,6 +10,7 @@ import { DropDownsModule } from '@progress/kendo-angular-dropdowns';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { TimesheetListComponent } from './timesheet-list/timesheet-list.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
+import { SchedulerModule } from '@progress/kendo-angular-scheduler';
 
 @NgModule({
   declarations: [TimesheetListComponent, TimesheetComponent],
@@ -25,6 +26,7 @@ import { TimesheetComponent } from './timesheet/timesheet.component';
     GridModule,
     InputsModule,
     DropDownsModule,
+    SchedulerModule,
   ],
 })
 export class TimeSheetModule {}

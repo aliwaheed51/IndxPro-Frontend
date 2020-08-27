@@ -14,12 +14,14 @@ import { PDFService, ExcelService, SuspendService, PDFModule, ExcelModule } from
 import {NgxPaginationModule} from 'ngx-pagination';
 import { NgxSmartModalModule, NgxSmartModalService } from 'ngx-smart-modal';
 import { MenuModule } from '@progress/kendo-angular-menu';
+import { SchedulerModule } from '@progress/kendo-angular-scheduler';
+
  
  
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, BrowserAnimationsModule, CoreModule, AppRoutingModule, NgbModalModule, PopupModule,
-    TreeViewModule, HammerModule, DateInputsModule, PipesModule, ExcelModule, PDFModule, NgxPaginationModule,NgxSmartModalModule.forRoot(), MenuModule],
+    TreeViewModule, HammerModule, DateInputsModule, PipesModule, ExcelModule, PDFModule, NgxPaginationModule,NgxSmartModalModule.forRoot(), MenuModule, SchedulerModule],
   bootstrap: [AppComponent],
   providers: [DialogService, DialogContainerService, NgbActiveModal, PDFService, ExcelService, SuspendService,NgxSmartModalService,
      ]

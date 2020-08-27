@@ -76,19 +76,19 @@ export class TimeSheetService extends BaseApiService<TimeSheetModel> {
   }
   GetDateTime(date: Date) {
     let dateFormat = require('dateformat');
-    var formatted = dateFormat(date, 'dS mmm , yyyy, h:MM TT');
+    var formatted = dateFormat(date, 'mm-d-yyyy h:MM TT');
     return formatted;
   }
 
   GetCompanies() {
     return [
       {
-        id: '1',
-        value: 'Avengers',
+        companyId: 1,
+        company: 'Avengers',
       },
       {
-        id: '2',
-        value: 'Super Leauge',
+        companyId: 2,
+        company: 'Super Leauge',
       },
     ];
   }
@@ -96,12 +96,12 @@ export class TimeSheetService extends BaseApiService<TimeSheetModel> {
   GetProjects() {
     return [
       {
-        id: '1',
-        value: 'SHIELD',
+        projectId: 1,
+        project: 'SHIELD',
       },
       {
-        id: '2',
-        value: 'Stark Industries',
+        projectId: 2,
+        project: 'Stark Industries',
       },
     ];
   }
@@ -109,16 +109,16 @@ export class TimeSheetService extends BaseApiService<TimeSheetModel> {
   GetProjectAreas() {
     return [
       {
-        id: '1',
-        value: 'Director',
+        projectAreaId: 1,
+        projectArea: 'Director',
       },
       {
-        id: '2',
-        value: 'Technical Lead',
+        projectAreaId: 2,
+        projectArea: 'Technical Lead',
       },
       {
-        id: '3',
-        value: 'Asgard',
+        projectAreaId: 3,
+        projectArea: 'Asgard',
       },
     ];
   }
@@ -126,16 +126,16 @@ export class TimeSheetService extends BaseApiService<TimeSheetModel> {
   GetDesignStages() {
     return [
       {
-        id: '1',
-        value: 'Open',
+        designStageId: 1,
+        designStage: 'Open',
       },
       {
-        id: '2',
-        value: 'In Development',
+        designStageId: 2,
+        designStage: 'In Development',
       },
       {
-        id: '3',
-        value: 'In Review',
+        designStageId: 3,
+        designStage: 'In Review',
       },
     ];
   }
@@ -143,16 +143,16 @@ export class TimeSheetService extends BaseApiService<TimeSheetModel> {
   GetDeliverables() {
     return [
       {
-        id: '1',
-        value: 'Ships',
+        deliverableId: 1,
+        deliverable: 'Ships',
       },
       {
-        id: '2',
-        value: 'Iron man suits',
+        deliverableId: 2,
+        deliverable: 'Iron man suits',
       },
       {
-        id: '3',
-        value: 'Hammer',
+        deliverableId: 3,
+        deliverable: 'Hammer',
       },
     ];
   }
@@ -160,16 +160,16 @@ export class TimeSheetService extends BaseApiService<TimeSheetModel> {
   GetSubDeliverables() {
     return [
       {
-        id: '1',
-        value: 'Jets',
+        subDeliverableId: 1,
+        subDeliverable: 'Jets',
       },
       {
-        id: '2',
-        value: 'Mark 3',
+        subDeliverableId: 2,
+        subDeliverable: 'Mark 3',
       },
       {
-        id: '3',
-        value: 'Hammer & Axe',
+        subDeliverableId: 3,
+        subDeliverable: 'Hammer & Axe',
       },
     ];
   }

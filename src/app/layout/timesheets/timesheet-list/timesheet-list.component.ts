@@ -10,14 +10,20 @@ import {
   GroupDescriptor,
   DataResult,
 } from '@progress/kendo-data-query';
+import { SchedulerEvent } from '@progress/kendo-angular-scheduler';
+import { sampleData, displayDate } from '../events-utc';
 
 @Component({
   selector: 'app-timesheet-list',
   templateUrl: './timesheet-list.component.html',
   styleUrls: ['./timesheet-list.component.scss'],
 })
-export class TimesheetListComponent extends MasterPage<TimeSheetModel>
+export class TimesheetListComponent
+  extends MasterPage<TimeSheetModel>
   implements OnInit {
+  public selectedDate: Date = displayDate;
+  public events: SchedulerEvent[] = sampleData;
+  showGrid: boolean;
   public groups: GroupDescriptor[] = [
     // { field: 'company' },
     // { field: 'employee' },
@@ -29,6 +35,7 @@ export class TimesheetListComponent extends MasterPage<TimeSheetModel>
     private utils: UtilityService
   ) {
     super(service);
+    this.showGrid = true;
   }
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
 
@@ -129,5 +136,12 @@ export class TimesheetListComponent extends MasterPage<TimeSheetModel>
   public groupChange(groups: GroupDescriptor[]): void {
     this.groups = groups;
     this.GetData();
+  }
+  onShowGridBtnClick() {
+    if (this.showGrid) {
+      this.showGrid = false;
+    } else {
+      this.showGrid = true;
+    }
   }
 }

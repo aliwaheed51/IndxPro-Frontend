@@ -11,7 +11,8 @@ import { IntlService } from '@progress/kendo-angular-intl';
   templateUrl: './timesheet.component.html',
   styleUrls: ['./timesheet.component.scss'],
 })
-export class TimesheetComponent extends MasterPage<TimeSheetModel>
+export class TimesheetComponent
+  extends MasterPage<TimeSheetModel>
   implements OnInit {
   companies: any;
   projects: any;
@@ -19,12 +20,27 @@ export class TimesheetComponent extends MasterPage<TimeSheetModel>
   designStages: any;
   deliverables: any;
   subDeliverables: any;
-  checkinValue: any;
-  checkoutValue: any;
   @Input() data: any;
   @Output() backClick: EventEmitter<any> = new EventEmitter();
   public mask: string = '(999) 00-000-00-00';
-  public default = { value: 'Select item...', id: '' };
+  public defaultCompany = { copmany: 'Select item...', companyId: '' };
+  public defaultProject = { project: 'Select item...', projectId: '' };
+  public defaultProjectArea = {
+    projectArea: 'Select item...',
+    projectAreaId: '',
+  };
+  public defaultDesignStage = {
+    designStage: 'Select item...',
+    designStageId: '',
+  };
+  public defaultDeliverable = {
+    deliverable: 'Select item...',
+    deliverableId: '',
+  };
+  public defaultSubDeliverable = {
+    subDeliverable: 'Select item...',
+    subDeliverableId: '',
+  };
   constructor(
     public service: TimeSheetService,
     private utils: UtilityService,
@@ -57,8 +73,8 @@ export class TimesheetComponent extends MasterPage<TimeSheetModel>
       deliverablesDD: ['', Validators.required],
       subDeliverablesDD: ['', Validators.required],
       remarks: ['', Validators.required],
-      checkin: ['', Validators.required],
-      checkout: ['', Validators.required],
+      checkin: [new Date(), Validators.required],
+      checkout: [new Date(), Validators.required],
     });
   }
 
@@ -79,11 +95,9 @@ export class TimesheetComponent extends MasterPage<TimeSheetModel>
       deliverablesDD: data.deliverableId,
       subDeliverablesDD: data.subDeliverableId,
       remarks: data.remarks,
-      checkin: new Date(data.checkin),
-      checkout: new Date(data.checkout),
+      checkin:  new Date(data.checkin),
+      checkout:  new Date(data.checkout),
     });
-    this.checkinValue = this.intl.formatDate(data.checkin, 'd');
-    this.checkoutValue = this.intl.formatDate(data.checkout, 'd');
   }
 
   onSave(): void {
@@ -94,6 +108,7 @@ export class TimesheetComponent extends MasterPage<TimeSheetModel>
         data.company = item.value;
       }
     });
+
     this.projects.forEach((item: { id: any; value: any }) => {
       if (data.projectsDD === item.id) {
         data.project = item.value;
