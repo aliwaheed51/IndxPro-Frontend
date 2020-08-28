@@ -21,11 +21,14 @@ import { sampleData, displayDate } from '../events-utc';
 export class TimesheetListComponent
   extends MasterPage<TimeSheetModel>
   implements OnInit {
+  @ViewChild('timesheetGrid') private timesheetGrid: {
+    collapseGroup: (arg0: string) => void;
+  };
   public selectedDate: Date = displayDate;
   public events: SchedulerEvent[] = sampleData;
   showGrid: boolean;
   public groups: GroupDescriptor[] = [
-    // { field: 'company' },
+    { field: 'company' },
     // { field: 'employee' },
     // { field: 'project' },
   ];
@@ -39,16 +42,21 @@ export class TimesheetListComponent
   }
   @ViewChild(DataBindingDirective) dataBinding: DataBindingDirective;
 
-  public gridView: any[];
+  public gridView: DataResult;
   gridData: TimeSheetModel[];
   data: any;
   ngOnInit(): void {
     this.GetData();
   }
 
+  ngAfterViewChecked() {
+    this.gridView.data.forEach((_, index) => {
+      this.timesheetGrid.collapseGroup(String(index));
+    });
+  }
   GetData() {
     this.gridData = this.service.GetStaticData();
-    this.gridView = this.gridData;
+    this.gridView = process(this.gridData, { group: this.groups });
   }
 
   onBack(): void {
@@ -73,63 +81,63 @@ export class TimesheetListComponent
   }
 
   public onFilter(inputValue: string): void {
-    this.gridView = process(this.gridData, {
-      filter: {
-        logic: 'or',
-        filters: [
-          {
-            field: 'company',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'employee',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'project',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'projectArea',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'designStages',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'deliverables',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'subDeliverables',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'remarks',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'checkin',
-            operator: 'contains',
-            value: inputValue,
-          },
-          {
-            field: 'checkout',
-            operator: 'contains',
-            value: inputValue,
-          },
-        ],
-      },
-    }).data;
+    // this.gridView = process(this.gridData, {
+    //   filter: {
+    //     logic: 'or',
+    //     filters: [
+    //       {
+    //         field: 'company',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'employee',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'project',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'projectArea',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'designStages',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'deliverables',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'subDeliverables',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'remarks',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'checkin',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //       {
+    //         field: 'checkout',
+    //         operator: 'contains',
+    //         value: inputValue,
+    //       },
+    //     ],
+    //   },
+    // }).data;
 
     this.dataBinding.skip = 0;
   }

@@ -11,11 +11,14 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { TimesheetListComponent } from './timesheet-list/timesheet-list.component';
 import { TimesheetComponent } from './timesheet/timesheet.component';
 import { SchedulerModule } from '@progress/kendo-angular-scheduler';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 @NgModule({
   declarations: [TimesheetListComponent, TimesheetComponent],
   imports: [
-    CommonModule,
+    BrowserModule,
+    BrowserAnimationsModule,
     CommonModule,
     SharedModule,
     LayoutModule,
